@@ -14,6 +14,7 @@
         padding: 0;
         margin: 0;
         background-color: #e0e0e0;
+        flex-wrap: wrap;
       }
 
       button {
@@ -24,22 +25,22 @@
         width: 6rem;
         margin: 2em;
         transition: all 250ms;
+        font-size: 1em;
 
         border: 0;
         border-radius: 1em;
         background: linear-gradient(145deg, #f0f0f0, #cacaca);
         box-shadow: 0.1em 0.1em 0.3em hsl(0, 0%, 58%),
           -0.1em -0.1em 0.3em hsl(0, 0%, 100%),
-          0.0em 0.0em 0.0em hsl(0, 0%, 58%) inset,
-          -0.0em -0.0em 0.0em hsl(0, 0%, 100%) inset;
+          0em 0em 0em hsl(0, 0%, 58%) inset,
+          -0em -0em 0em hsl(0, 0%, 100%) inset;
       }
 
       button:active {
-        box-shadow: 0.0em 0.0em 0.0em hsl(0, 0%, 58%),
-          -0.0em -0.0em 0.0em hsl(0, 0%, 100%),
+        box-shadow: 0em 0em 0em hsl(0, 0%, 58%), -0em -0em 0em hsl(0, 0%, 100%),
           0.1em 0.1em 0.3em hsl(0, 0%, 58%) inset,
           -0.1em -0.1em 0.3em hsl(0, 0%, 100%) inset;
-          color: red;
+        color: red;
       }
 
       img {
