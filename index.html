@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      figure {
+        --timebase: 0.1;
+        --rotation-displacement: 2em;
+
+        width: 40em;
+        height: 40em;
+        position: relative;
+      }
+
+      figure::after {
+          content: "";
+          border-radius: 50%;
+          background-color: white;
+          position: absolute;
+          inset:0;
+          margin: auto;
+          width: 0.2em;
+          height: 0.2em;
+      }
+
+      figure div {
+        animation: rotate;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        left: 0;
+        right: 0;
+        bottom: calc(50% - var(--rotation-displacement));
+        margin: auto;
+        transform-origin: 50% calc(100% - var(--rotation-displacement));
+      }
+
+      .hour {
+        background-color: black;
+        position: absolute;
+        width: 1em;
+        height: 11em;
+        animation-duration: calc(var(--timebase) * 43200s);
+      }
+
+      .minute {
+        background-color: black;
+        position: absolute;
+        width: 1em;
+        height: 17em;
+        animation-duration: calc(var(--timebase) * 3600s);
+      }
+
+      .second {
+        background-color: black;
+        position: absolute;
+        width: 0.5em;
+        height: 17em;
+        animation-duration: calc(var(--timebase) * 60s);
+      }
+
+      @keyframes rotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      input {
+          width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <figure>
+      <img src="./clock.svg" alt="" srcset="" />
+      <div class="hour"></div>
+      <div class="minute"></div>
+      <div class="second"></div>
+      <input type="range" name="" id="timebase" min="0.001" max="1" step="0.001" value="1">
+    </figure>    
+  </body>
+  <script>
+      let range = document.getElementById("timebase");
+      let figure = document.querySelector("figure")
+      figure.style.setProperty("--timebase", range.value);
+      range.onchange = () => {figure.style.setProperty("--timebase", range.value);};
+  </script>
+</html>
