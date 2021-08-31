@@ -21,7 +21,11 @@ div {
   animation: first 2s infinite alternate-reverse;
 }
 
-
+div:hover {
+  animation-name: strobe_1;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
 
 @keyframes strobe_1 {
   from,to {
