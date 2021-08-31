@@ -9,9 +9,15 @@
   </head>
   <body>
     <ul>
-      <li>Start</li>
-      <li>Profile</li>
-      <li>Logout</li>
+      <li class="hoverable">Start</li>
+      <li class="hoverable">Profile</li>
+      <li class="hoverable">Logout</li>
     </ul>
   </body>
+  <script>
+    let hoverables = document.getElementsByClassName("hoverable");
+    for (const hoverable of hoverables) {
+      hoverable.addEventListener("mouseleave", () => hoverable.classList.add("afterHover"));
+    }
+  </script>
 </html>
