@@ -27,6 +27,8 @@
       }
 
       figure div {
+        background-color: black;
+        position: absolute;
         animation: rotate;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
@@ -37,25 +39,19 @@
         transform-origin: 50% calc(100% - var(--rotation-displacement));
       }
 
-      .hour {
-        background-color: black;
-        position: absolute;
+      .hour { 
         width: 1em;
         height: 11em;
         animation-duration: calc(var(--timebase) * 43200s);
       }
 
       .minute {
-        background-color: black;
-        position: absolute;
         width: 1em;
         height: 17em;
         animation-duration: calc(var(--timebase) * 3600s);
       }
 
       .second {
-        background-color: black;
-        position: absolute;
         width: 0.5em;
         height: 17em;
         animation-duration: calc(var(--timebase) * 60s);
