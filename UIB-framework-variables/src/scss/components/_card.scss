@@ -1,0 +1,29 @@
+.card {
+    width: 100%;
+    padding: 1em;
+  
+    figure {
+      padding: 0;
+      height: 15em;
+      max-height: 15em;
+      width: 100%;
+      flex-shrink: 0;
+  
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+  
+      @media screen and (min-width: $md) {
+        height: 15em;
+        width: 15em;
+        margin-right: 1em;
+      }
+    }
+  
+    > div {
+      width: 100%;
+      height: fit-content;
+    }
+  }

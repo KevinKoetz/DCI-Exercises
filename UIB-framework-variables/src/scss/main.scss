@@ -1,0 +1,36 @@
+// This is where you can import other stylesheets or write your scss code
+@import "./common/variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "./components/card";
+
+
+body {
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+}
+
+.nav {
+  min-height: 3em;
+  align-items: center;
+  > a {
+    margin: 0 1em;
+  }
+}
+
+header {
+    padding-top: 2em;
+  background-image: url(../images/header.jpg);
+  min-height: 20em;
+  background-size: cover;
+}
+
+main {
+  padding: 1em 0;
+  > div {
+      margin-bottom: 1em;
+  } 
+}
+
+
