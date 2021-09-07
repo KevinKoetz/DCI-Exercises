@@ -1,3 +1,89 @@
 // This is where you can import other stylesheets or write your scss code
-@import "../../node_modules/bootstrap/scss/bootstrap";
+//@import "../../node_modules/bootstrap/scss/bootstrap";
+@use "sass:list";
+@use "sass:string";
+@use "sass:color";
+@use "sass:math";
+@import "./abstract/variables";
+@import "./layout/layout";
 
+@function b10Tob16($number) {
+  $rest: $number;
+  $hex: undefined;
+
+  $fit: math.floor($number / 16);
+  $rest: $number % 16;
+  @if $fit < 10 {
+    $hex: string.quote(#{$fit});
+  }
+  @if $fit == 10 {
+    $hex: string.quote(A);
+  }
+  @if $fit == 11 {
+    $hex: string.quote(B);
+  }
+  @if $fit == 12 {
+    $hex: string.quote(C);
+  }
+  @if $fit == 13 {
+    $hex: string.quote(D);
+  }
+  @if $fit == 14 {
+    $hex: string.quote(E);
+  }
+  @if $fit == 15 {
+    $hex: string.quote(F);
+  }
+
+  @if $rest < 10 {
+    $hex: $hex + string.quote(#{$rest});
+  }
+  @if $rest == 10 {
+    $hex: $hex + string.quote(A);
+  }
+  @if $rest == 11 {
+    $hex: $hex + string.quote(B);
+  }
+  @if $rest == 12 {
+    $hex: $hex + string.quote(C);
+  }
+  @if $rest == 13 {
+    $hex: $hex + string.quote(D);
+  }
+  @if $rest == 14 {
+    $hex: $hex + string.quote(E);
+  }
+  @if $rest == 15 {
+    $hex: $hex + string.quote(F);
+  }
+  @return $hex;
+}
+
+@for $i from 1 through list.length($colors) {
+  .colorCard:nth-child(#{$i}) {
+    display: block;
+    background-color: list.nth($colors, $i);
+
+    &::after {
+      content: string.quote(
+        "Color: " +
+          #{list.nth($colors, $i)} +
+          "\A Hex-Code: #"+
+          b10Tob16(color.red(list.nth($colors, $i))) +
+          b10Tob16(color.green(list.nth($colors, $i))) +
+          b10Tob16(color.blue(list.nth($colors, $i)))
+      );
+      white-space: pre-wrap;
+    }
+
+    .gradients {
+      &::before {
+        background-color: darken(list.nth($colors, $i), 10%);
+      }
+
+      &::after {
+        background-color: lighten(list.nth($colors, $i), 10%);
+      }
+    }
+  }
+}
