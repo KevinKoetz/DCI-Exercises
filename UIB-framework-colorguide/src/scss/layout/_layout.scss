@@ -15,6 +15,7 @@ body {
 
     @media screen and (min-width: $bp-desktop) {
         flex-direction: row;
+        //Card-height + 2em to have space for the gradient cards below the color card
         row-gap: $card-height + 2em;
     }
 }

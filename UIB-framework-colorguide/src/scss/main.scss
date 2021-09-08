@@ -7,6 +7,7 @@
 @import "./abstract/variables";
 @import "./layout/layout";
 
+//Base 10 to Base 16 Conversion up to 255 (for the Hex value of the colors)
 @function b10Tob16($number) {
   $rest: $number;
   $hex: undefined;
@@ -59,11 +60,17 @@
   @return $hex;
 }
 
+//Go through all colors specified
 @for $i from 1 through list.length($colors) {
+
+  //Select the ith-colorCard and apply the background color 
   .colorCard:nth-child(#{$i}) {
+
+    //ColorCards are display: none by default
     display: block;
     background-color: list.nth($colors, $i);
 
+    //Set the content of the after Element to display the Color Name and Hex Value
     &::after {
       content: string.quote(
         "Color: " +
@@ -76,6 +83,8 @@
       white-space: pre-wrap;
     }
 
+    //Add darker and lighter versions of the color to the corresponding gradient card.
+    //On the desktop Version those cards will be shown below the colorCard, on mobile they will be shown when touched/hovered.
     .gradients {
       &::before {
         background-color: darken(list.nth($colors, $i), 10%);
