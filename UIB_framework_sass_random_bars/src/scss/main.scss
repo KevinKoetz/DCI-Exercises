@@ -1,1 +1,46 @@
 // This is where you can import other stylesheets or write your scss code
+@use "sass:math";
+@use "sass:color";
+
+body {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+
+div {
+  width: 100%;
+}
+
+@for $i from 1 through 30 {
+  div:nth-child(#{$i}) {
+    height: random(100) * 1%;
+    animation: dance random(5) * 1s infinite, rotateGradient 1s infinite;
+    @if $i % 2 == 1 {
+      background: linear-gradient(
+        random(360) * 1deg,
+        lighten(hsl(350, 100%, 88%), random(10) * 1%),
+        hsl(350, 100%, 88%)
+      );
+      align-self: flex-end;
+      border-radius: random(5) * 1em random(5) * 1em 0 0;
+    } @else {
+      background: linear-gradient(
+        random(360) * 1deg,
+        lighten(hsl(300, 100%, 25%), random(60) * 1%),
+        hsl(300, 100%, 25%)
+      );
+      align-self: flex-start;
+      border-radius: 0 0 random(5) * 1em random(5) * 1em;
+    }
+
+    @keyframes dance {
+      50% {
+        height: random(100) * 1%;
+      }
+    }
+  }
+}
