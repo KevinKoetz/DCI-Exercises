@@ -1,0 +1,9 @@
+@mixin hide($type:visibility) {
+    @if $type == display {
+        display: none;
+    }@else if $type == visibility {
+        visibility: hidden;
+    }@else if $type == opacity {
+        opacity: 0;
+    }
+}

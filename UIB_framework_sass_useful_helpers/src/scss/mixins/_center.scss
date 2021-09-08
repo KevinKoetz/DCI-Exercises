@@ -1,0 +1,18 @@
+@mixin center($type) {
+  @if $type == flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } @else if $type == grid {
+    display: grid;
+    place-content: center;
+  } @else if $type == inset {
+    position: relative;
+
+    & > * {
+      inset: 0;
+      margin: auto;
+      position: absolute;
+    }
+  }
+}
