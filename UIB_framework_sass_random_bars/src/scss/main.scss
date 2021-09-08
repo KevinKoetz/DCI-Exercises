@@ -18,7 +18,7 @@ div {
 @for $i from 1 through 30 {
   div:nth-child(#{$i}) {
     height: random(100) * 1%;
-    animation: dance random(5) * 1s infinite, rotateGradient 1s infinite;
+    animation: dance random(5) * 1s infinite;
     @if $i % 2 == 1 {
       background: linear-gradient(
         random(360) * 1deg,
