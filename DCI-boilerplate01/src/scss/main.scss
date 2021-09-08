@@ -1,0 +1,91 @@
+// This is where you can import other stylesheets or write your scss code
+//@import "../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+div {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+// variables lists and maps
+$variablename: value;
+$pixel: 20px;
+$percentage: 100%;
+
+$primary: purple;
+
+$primary: red !default;
+
+$list: item1, item2, item3, item4; // this is a list
+$listOfColors: red, green, blue, yellow; // this is a list
+
+$map: (
+  sm: 456px,
+  md: 768px,
+  lg: 1024px,
+); // this is a map
+
+// @if @else
+$colorDivs: 1;
+div:nth-child(1) {
+  @if $colorDivs == 1 {
+    background: black;
+  } 
+  @if $colorDivs == 0 and $primary == blue{
+    background: $primary;
+  }
+
+  @if $primary != rgb(255, 0, 0){
+    background: $primary;
+  } 
+}
+
+
+// @for
+// from 1 to 30 <-- not including 30
+// from 1 through 30 <-- including 30
+@for $k from 1 through 30 {
+    div:nth-child(#{$k}) {
+        background: hsl((360 / 30) * $k, 100%, 50%);
+    }
+}
+
+// @mixin name
+@mixin mixinName($parameter){
+    &::before {
+        content: $parameter;
+        display: inline;
+    }
+
+}
+
+div:nth-child(15){
+    
+    //This will get replaced by the stuff in the mixin
+    @include mixinName("Hello World")
+}
+
+// @function
+@function fontSize($size){
+    @if $size == xxl {
+        @return 36px;
+    } @else if $size == xl{
+        @return 30px;
+    } @else {
+        @error "My cool custom Error";
+
+    }
+}
+
+div {
+    font-size: fontSize(xxl);
+}
+
+
+
