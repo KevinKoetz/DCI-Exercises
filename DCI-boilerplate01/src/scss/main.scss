@@ -31,61 +31,39 @@ $map: (
   lg: 1024px,
 ); // this is a map
 
-// @if @else
-$colorDivs: 1;
-div:nth-child(1) {
-  @if $colorDivs == 1 {
-    background: black;
-  } 
-  @if $colorDivs == 0 and $primary == blue{
-    background: $primary;
+$fontSizes: (
+  s: 0.8em,
+  m: 1em,
+  l: 1.5em,
+  xl: 2em,
+);
+
+@each $color in $listOfColors {
+  .text-#{$color} {
+    color: $color;
   }
-
-  @if $primary != rgb(255, 0, 0){
-    background: $primary;
-  } 
 }
 
+@each $name, $value in $fontSizes {
+  .text-#{$name} {
+    font-size: $value;
+  }
+}
 
-// @for
-// from 1 to 30 <-- not including 30
-// from 1 through 30 <-- including 30
-@for $k from 1 through 30 {
-    div:nth-child(#{$k}) {
-        background: hsl((360 / 30) * $k, 100%, 50%);
+$bp: (
+  sm: 456px,
+  md: 768px,
+  lg: 1024px,
+);
+
+@each $bpkey, $bpvalue in $bp {
+  @media screen and (min-width: #{$bpvalue}) {
+
+    @each $fskey, $fsvalue in $fontSizes {
+      .text-#{$bpkey}-#{$fskey} {
+        font-size: $fsvalue;
+      }
     }
+
+  }
 }
-
-// @mixin name
-@mixin mixinName($parameter){
-    &::before {
-        content: $parameter;
-        display: inline;
-    }
-
-}
-
-div:nth-child(15){
-    
-    //This will get replaced by the stuff in the mixin
-    @include mixinName("Hello World")
-}
-
-// @function
-@function fontSize($size){
-    @if $size == xxl {
-        @return 36px;
-    } @else if $size == xl{
-        @return 30px;
-    } @else {
-        @error "My cool custom Error";
-
-    }
-}
-
-div {
-    font-size: fontSize(xxl);
-}
-
-
-
