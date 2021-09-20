@@ -2,8 +2,6 @@
 // Compiled Languages: C, C++, (Java, C#)
 // Interpreted Languages: JavaScript, Python
 
-const { count } = require("console");
-
 // 2. Variables - var, let and const https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables
 //keyword identifier = value
 
