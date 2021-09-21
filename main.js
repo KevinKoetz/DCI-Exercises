@@ -1,0 +1,12 @@
+console.log("Q1:", `${6450 / 15} Tickets`);
+console.log("Q2:", `${500 * 52} Dollar per year`);
+console.log("Q3:", `${17/30*100} %`);
+console.log("Q4:", `${4.75 * 4} cm`);
+console.log("Q5:", `${5 + 6 +7} cm`);
+console.log("Q6:", `${5**2} cm²`);
+console.log("Q7:", `${3*4/2} cm²`);
+console.log("Q8:", `${9**3} cm³`);
+console.log("Q9:", `1st: ${22.35*1.1}€ 2nd: ${26.67*1.15}€ 3rd: ${35.92 * 1.2}€`);
+console.log("Q10:", `${(8+6+5+9+8+2+1+8.5+7+4)/10} h`);
+console.log("Q11:", `${85*6-(75+70+85+90+100)} points`);
+console.log("Q12:", `${80*9-(78*8)}%`);
