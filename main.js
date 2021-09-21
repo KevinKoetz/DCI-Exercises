@@ -1,0 +1,18 @@
+let snackServings = 2, guests = 4, drinks = 10;
+console.log(`1: ${snackServings + guests}`);
+console.log(`2a: ${snackServings - guests}`);
+console.log(`2b: ${guests - snackServings}`);
+console.log(`3: ${snackServings * guests}`);
+console.log(`4: ${snackServings / guests}`);
+let resultOne = (snackServings * guests) / drinks;
+console.log(`5: ${resultOne}`);
+let monkeys = 15, bananas = 9;
+console.log(`6: ${monkeys / bananas}`);
+let monkeyfights = 20;
+let resultTwo = (monkeys + bananas) * monkeyfights;
+console.log(`7: ${resultTwo}`);
+console.log(`8: ${++monkeys}`);
+console.log(`9: ${--bananas}`);
+let happiness = bananas - monkeys;
+console.log(`10: ${happiness + monkeyfights}`);
+console.log(resultOne % resultTwo);
