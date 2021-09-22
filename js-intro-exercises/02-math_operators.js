@@ -83,8 +83,7 @@ console.log(result);
  */
 
 function isString(parameter) {
-    let result = parameter === parameter + "";
-    return result;
+    return typeof parameter === "string";
 }
 
 console.log(isString(""));
