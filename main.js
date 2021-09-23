@@ -1,38 +1,42 @@
-function fibonacciRec(n) {
-  if (n === 1) return 0;
-  if (n === 2) return 1;
-  return fibonacciRec(n - 1) + fibonacciRec(n - 2);
+// NaN = Not a Number
+
+console.log('isNaN("")',isNaN(""));
+console.log('isNaN("a")',isNaN("a"));
+console.log('isNaN("2")',isNaN("2"));
+console.log('isNaN(undefined)',isNaN(undefined));
+console.log('isNaN(null)',isNaN(null));
+console.log('isNaN(3)',isNaN(3));
+console.log('isNaN(NaN)',isNaN(NaN));
+
+
+console.log('Number.isNaN("")',Number.isNaN(""));
+console.log('Number.isNaN("a")',Number.isNaN("a"));
+console.log('Number.isNaN("2")',Number.isNaN("2"));
+console.log('Number.isNaN(undefined)',Number.isNaN(undefined));
+console.log('Number.isNaN(null)',Number.isNaN(null));
+console.log('Number.isNaN(3)',Number.isNaN(3));
+console.log('Number.isNaN(NaN)',Number.isNaN(NaN));
+
+
+function isNumber(para) {
+  return !Number.isNaN(para) && typeof para === "number";
 }
 
-function fibonacci(n) {
-  if (n === 1) return 0;
-  if (n === 2) return 1;
-  let n1 = 0;
-  let n2 = 1;
-  let result = n1 + n2;
-  for (let i = 3; i <= n; i++) {
-    result = n1 + n2;
-    n1 = n2;
-    n2 = result;
-  }
-  return result;
-}
+console.log("NaN isNumber:", isNumber(NaN));
+console.log("NaN isNumber:", isNumber(undefined));
+console.log("NaN isNumber:", isNumber(null));
+console.log("NaN isNumber:", isNumber(true));
+console.log("NaN isNumber:", isNumber(false));
+console.log("NaN isNumber:", isNumber(""));
+console.log("NaN isNumber:", isNumber("a"));
+console.log("NaN isNumber:", isNumber("2"));
+console.log("NaN isNumber:", isNumber(2));
+console.log("NaN isNumber:", isNumber(2e2));
+console.log("NaN isNumber:", isNumber(0x1));
 
-function xbonacci(signature, n) {
-  let sequence = [];
-  for (let i = 0; i < n; i++) {
-    if (i < signature.length) {
-      sequence.push(signature[i]);
-    } else {
-      sequence.push(
-        sequence.slice(-signature.length).reduce((prev, cur) => prev + cur)
-      );
-    }
-  }
-  return sequence;
-}
+console.log(0.1 * 0.2);
+console.log((0.1 *0.2).toFixed(2));
 
-for (let i = 1; i <= 20; i++) console.log(fibonacci(i));
-for (let i = 1; i <= 20; i++) console.log(fibonacciRec(i));
-
-console.log(xbonacci([1, 1, 1],20));
+console.log(Infinity / 0);
+console.log(Infinity / Infinity);
+console.log(1/0);
