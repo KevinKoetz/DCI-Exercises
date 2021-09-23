@@ -75,7 +75,10 @@ console.log(round100(856.12));
   */
 
  function parseFirstInt(str) {
-     return str.match(/\d+/)[0];
+     return parseInt(str.match(/\d+/) ? str.match(/\d+/)[0] : NaN);
  }
 
-console.log(parseFirstInt("68")); 
+console.log(parseFirstInt("j68s")); 
+console.log(parseFirstInt("68ku")); 
+console.log(parseFirstInt("68huk46")); 
+console.log(parseFirstInt("daw")); 
