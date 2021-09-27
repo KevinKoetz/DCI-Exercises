@@ -157,3 +157,34 @@ console.log(add(10,5));
 // 4. If there are potatoes left, go back to 1., if not go to 5.
 // 5. Add mayo into bowl
 
+
+for (let i = 1; i <= 100; i++){
+    if (i % 2 === 0) {
+        console.log(i); //should only log even numbers
+    }
+}
+
+for (let i = 1; i <= 100; i++){
+    if (i % 2 === 1) {
+        console.log(i); //should only log odd numbers
+    }
+}
+
+1 % 2 == 1 // 1 % 2 -> 1, 1 % 2 == 1 -> true
+1 % 2 == "1" //will be true, because == will convert the string "1" into a number 1
+1 % 2 === "1" //will be false, because the left hand side is a number and the right side is a string
+2 % 2 === 0
+3 % 2 == 1
+4 % 2 == 0
+5 % 2 == 1
+
+/*
+i % 2 === 0 //if and only if "i" is even
+i % 2 === 1 //if and only if "i" is odd
+*/
+
+3 % 3 == 0
+4 % 3== 1
+5 % 3 == 2
+6 % 3 == 0
+7 % 3 == 1
