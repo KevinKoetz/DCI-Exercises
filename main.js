@@ -105,6 +105,55 @@ for (let i = 0; i < array.length; i++) {
 
 
 
+//1. Understand Variables
 
+let a = 1;
+const pi = 3.1456498;
+var c = 3;
 
+//2. Expressions https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators
+// 1 + 2 <-- Expression, 1=operand +=operator 2=operand
+//unary operators: typeof operand
+typeof "some string" //returns a string with the type of the operand. In this case "string"
+typeof 2 //number
+
+5 < 6
+
+//3. if...else controll flow
+let expression = 1;
+if(expression) {
+    //if expression is a truthy value, then this code inside here gets executed
+    console.log("Inside the if");
+} else {
+     //if expression is a falsy value, then this code inside here gets executed
+     console.log("Inside the else");
+}
+
+//4. Functions 
+function someName(parameter1, parameter2, parameter3, ...remainingParameters){
+    //--some code--
+    //this code is executed if you call/run the function by using its name and paranthesis afterwards. for example: someName(1,3)
+    //whats inside the paranthesis will be given as a parameter to the function
+    console.log("parameter1", parameter1);
+    console.log("parameter2", parameter2);
+}
+
+someName(5,6) //calling the function here
+
+function add(a,b){
+    let c = a+b
+    return c
+}
+
+result = add(5,6);
+console.log(result);
+
+console.log(add(10,5));
+
+//5. Loops 
+// 1. Take one potatoe
+// 2. Chop the potatoe
+// 3. Put potatoe into bowl
+// 4. If there are potatoes left, go back to 1., if not go to 5.
+// 5. Add mayo into bowl
 
