@@ -1,16 +1,16 @@
-let a = false;
-let b = true;
+console.log(3 == "3"); // true because "3" is coerced to 3
+console.log(3 === "3"); // false because typeof are different
 
-console.log(a&&b); //returns false because not both are true
-console.log(a||b); //returns true because one is true
-console.log(!(a&&b)); //returns true because a&&b is false
+// === should be used and we should explicitly convert values if necessary
+// = will trow a Syntax Error
 
-let atoms = 560089414684654679, sandGrains = 61064810321, starsInSky = 64096413
+let v = true;
 
-console.log(atoms > starsInSky && atoms > sandGrains); //returns true because atoms are bigger than the other numbers
-console.log(atoms !== sandGrains); // returns true because atoms is not equal to sandGrains
-console.log(starsInSky < sandGrains || starsInSky > atoms); // retungs true because sandGrains is bigger than starsInSky
-console.log(atoms === starsInSky ||atoms !== sandGrains); // returns  true because atoms is not equal to sandGrains
-console.log(atoms >= 10 && sandGrains <= 10); // returns false because sandGrains is bigger than 10
-console.log(atoms * starsInSky < 100 || atoms * starsInSky > 100); // returns true because the rhs expression is true
+console.log(!v ? "true option" : "false option");
+// expression ? returnIfTrue : returnIfFalse <-- if expression is truthy return "returnIfTrue" otherwise "returnIfFalse"
 
+let num = 3;
+
+console.log(
+  num % 3 || num % 3) ? "FizzBuzz"  : num
+);
