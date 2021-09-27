@@ -120,8 +120,8 @@ typeof 2 //number
 5 < 6
 
 //3. if...else controll flow
-let expression = 1;
-if(expression) {
+let i = 1;
+if(i > 5) {
     //if expression is a truthy value, then this code inside here gets executed
     console.log("Inside the if");
 } else {
@@ -188,3 +188,7 @@ i % 2 === 1 //if and only if "i" is odd
 5 % 3 == 2
 6 % 3 == 0
 7 % 3 == 1
+
+let var1 = "this is a string" // assign a string to a var
+let var2 = 2 // assigning a number to var
+let var3 = true //assigning a boolean
