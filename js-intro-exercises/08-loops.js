@@ -105,8 +105,17 @@ console.log(isPrime(11));
  */
 
 function trim(str){
-    let tmpArr = str.split("")
+    let left = null
+    let right = null;
+    for(let i = 0; i < str.length; i++){
+        if(str[i] !== " " && left === null) left = i;
+        if(str[str.length - 1 - i] !== " "  && right === null) right = str.length - i;
+    }
+    return str.slice(left, right)
 }
+
+console.log(trim("  19"));
+console.log(trim("16  ").split("").reverse().join(""));
 
 /**
  * 7 Hard
@@ -118,3 +127,13 @@ function trim(str){
 *****
 ******
  */
+
+function pattern(lines){
+    let str = "*"
+    for(let i = 0;i < lines; i++){
+        console.log(str);
+        str += "*"
+    }
+}
+
+pattern(6)
