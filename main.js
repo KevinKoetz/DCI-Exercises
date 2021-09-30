@@ -13,7 +13,20 @@
 //There are i bottles of beer on the wall. Write a program that will output, "There is one bottle of beer on the wall."
 //"There are two bottles of beer on the wall" up until there are five bottles.
 for (let i = 1; i <= 5; i++) {
-  let number = i === 1;
+  let bottle = i > 1 ? "bottles" : "bottle";
+  let are = i > 1 ? "are" : "is";
+  console.log(`There ${are} ${numberToString(i)} ${bottle} of beer on the wall.` );
+}
+
+function numberToString(number){
+  switch (number) {
+    case 1: return "one";
+    case 2: return "two";
+    case 3: return "three";
+    case 4: return "four";
+    case 5: return "five";
+    default: return `${number}`
+  }
 }
 
 //The odd/even reporter. Write a program that will iterate from 0 to 20. For each iteration, it will check if the current number is even or odd, and report that to the screen (e.g. "2 is even").
