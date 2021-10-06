@@ -5,4 +5,4 @@ const twofer = who => {
 };
 
 console.log(twofer("Fran")); // -> "Two for me and one for Fran"
-console.log(twofer()); // -> "Two for me and one for you"
+console.log(twofer("you")); // -> "Two for me and one for you"
