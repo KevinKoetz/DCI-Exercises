@@ -28,6 +28,14 @@ interface IBlogPost {
   author: string;
   description: string;
   comments: Array<string>;
+  update(
+    property: Extract<
+      keyof IBlogPost,
+      "title" | "text" | "author" | "description"
+    >,
+    value: string
+  ): BlogPost;
+  printComments(): void;
 }
 
 const getId = (() => {
@@ -58,9 +66,9 @@ class BlogPost implements IBlogPost {
   comments: Array<string>;
 
   update(
-    property: keyof Omit<
-      BlogPost,
-      "id" | "comments" | "update" | "printComments"
+    property: Extract<
+      keyof IBlogPost,
+      "title" | "text" | "author" | "description"
     >,
     value: string
   ): BlogPost {
@@ -68,26 +76,47 @@ class BlogPost implements IBlogPost {
     return this;
   }
 
-  printComments() {
+  printComments(): void {
     for (const comment of this.comments) {
       console.log(comment);
     }
   }
 }
 
-class BlogPosts extends Array<BlogPost> {
+class Blog {
+  constructor() {
+    this.posts = [];
+  }
   getPost(id: number): BlogPost | undefined {
-    for (const item of this) {
+    for (const item of this.posts) {
       if (item.id === id) return item;
     }
   }
 
+  posts: BlogPost[];
+
+  [Symbol.iterator]() {
+    return (function (blog: Blog) {
+      let index = 0;
+      return {
+        next() {
+          return {
+            done: !(index < blog.posts.length),
+            value: index < blog.posts.length && blog.posts[index++],
+          };
+        },
+      };
+    })(this);
+  }
+
   searchText(searchStr: string): BlogPost[] | "No matching posts found" {
-    let result: BlogPost[] = this.filter((post) => {
-      const keys: Exclude<
-        keyof BlogPost,
-        "id" | "comments" | "update" | "printComments"
-      >[] = ["title", "text", "author", "description"];
+    let result: BlogPost[] = this.posts.filter((post) => {
+      const keys = Object.freeze<"title" | "text" | "author" | "description">([
+        "title",
+        "text",
+        "author",
+        "description",
+      ]);
       for (const key of keys) {
         const value = post[key];
         if (value.includes(searchStr)) return true;
@@ -99,11 +128,16 @@ class BlogPosts extends Array<BlogPost> {
     return result;
   }
 
+  addPost(blogPost: BlogPost): Blog {
+    this.posts.push(blogPost);
+    return this;
+  }
+
   deletePost(id: number): true | false {
-    for (let i = 0; i < this.length; i++) {
-      const post = this[i];
+    for (let i = 0; i < this.posts.length; i++) {
+      const post = this.posts[i];
       if (post.id === id) {
-        this.splice(id, 1);
+        this.posts.splice(id, 1);
         return true;
       }
     }
@@ -111,7 +145,9 @@ class BlogPosts extends Array<BlogPost> {
   }
 }
 
-const blogPosts: BlogPosts = new BlogPosts();
+const blog: Blog = new Blog();
+
+
 [
   {
     id: 1,
@@ -169,7 +205,7 @@ const blogPosts: BlogPosts = new BlogPosts();
     comments: ["Amazed wow!", "I dislike that"],
   },
 ].forEach((item) => {
-  blogPosts.push(
+  blog.addPost(
     new BlogPost(
       item.title,
       item.text,
@@ -185,7 +221,7 @@ const blogPosts: BlogPosts = new BlogPosts();
  * are no matching posts*/
 console.log("search Text_______________________");
 
-console.log(blogPosts.searchText("Wisdom"));
+console.log(blog.searchText("Wisdom"));
 
 /*
 Create a function that edits a given post. The user should be able to edit 
@@ -193,14 +229,26 @@ Create a function that edits a given post. The user should be able to edit
  * If the post is not found then the function should return 'Post not found'
 */
 console.log("update_______________________");
-console.log(blogPosts.getPost(2)?.update("title", "A garden in Simona"));
+console.log(blog.getPost(2)?.update("title", "A garden in Simona"));
 
 console.log("delete_______________________");
-console.log(blogPosts.deletePost(1));
-console.log(blogPosts);
+console.log(blog.deletePost(1));
+console.log(blog);
 
 console.log("comments________");
-blogPosts.getPost(0)?.printComments();
+blog.getPost(0)?.printComments();
+
+console.log("for...of________");
+for (const post of blog) {
+  console.log(post);
+}
+console.log("for...of________ END");
+
+console.log("for...of________");
+for (const post of blog) {
+  console.log(post);
+}
+console.log("for...of________ END");
 
 /**
  * Create the wishlist functionality of an eshop that is selling vitamins.
@@ -256,26 +304,45 @@ class Product {
   image: string;
 }
 
-class WishList extends Array<number> {
+class WishList {
   constructor(user: string) {
-    super();
     this.user = user;
+    this.products = [];
   }
   user: string;
+  products: number[];
+
+  [Symbol.iterator]() {
+    return (function (wishlist: WishList) {
+      let index = 0;
+      return {
+        next() {
+          return {
+            done: !(index < wishlist.products.length),
+            value:
+              index < wishlist.products.length
+                ? wishlist.products[index++]
+                : undefined,
+          };
+        },
+      };
+    })(this);
+  }
+
   addProduct(id: number): WishList {
-    if (!this.includes(id)) this.push(id);
+    if (!this.products.includes(id)) this.products.push(id);
     return this;
   }
   removeProduct(id: number): true | false {
-    if (this.includes(id)) {
-      this.splice(this.indexOf(id), 1);
+    if (this.products.includes(id)) {
+      this.products.splice(this.products.indexOf(id), 1);
       return true;
     }
     return false;
   }
   printWhislist(products: Product[]) {
     console.log(`For user ${this.user} here is the whislist:`);
-    for (const productId of this) {
+    for (const productId of this.products) {
       const product = products.find((item) => item.id === productId);
       if (product) {
         console.log(
@@ -291,9 +358,30 @@ class WishList extends Array<number> {
   }
 }
 
-class WishLists extends Array<WishList> {
-  getWhishList(user: string): WishList | undefined {
-    return this.find((item) => item.user === user);
+class WishLists {
+  wishlists: WishList[] = [];
+  getWishList(user: string): WishList | undefined {
+    return this.wishlists.find((item) => item.user === user);
+  }
+  addWishlist(wishList: WishList) {
+    this.wishlists.push(wishList);
+  }
+
+  [Symbol.iterator]() {
+    return (function (wishlist: WishLists) {
+      let index = 0;
+      return {
+        next() {
+          return {
+            done: !(index < wishlist.wishlists.length),
+            value:
+              index < wishlist.wishlists.length
+                ? wishlist.wishlists[index++]
+                : undefined,
+          };
+        },
+      };
+    })(this);
   }
 }
 
@@ -341,16 +429,21 @@ const products: Product[] = [
 ];
 
 const wishlists = new WishLists();
-wishlists.push(new WishList("alkis"));
-wishlists.push(new WishList("george"));
+wishlists.addWishlist(new WishList("alkis"));
+wishlists.addWishlist(new WishList("george"));
 
-wishlists.getWhishList("alkis")?.addProduct(1);
-wishlists.getWhishList("alkis")?.addProduct(2);
+wishlists.getWishList("alkis")?.addProduct(1);
+wishlists.getWishList("alkis")?.addProduct(2);
 
-wishlists.getWhishList("george")?.addProduct(1);
-wishlists.getWhishList("george")?.addProduct(4);
+wishlists.getWishList("george")?.addProduct(1);
+wishlists.getWishList("george")?.addProduct(4);
 
 console.log(wishlists);
-console.log(wishlists.getWhishList("alkis")?.addProduct(5));
+console.log(wishlists.getWishList("alkis")?.addProduct(5));
 
-wishlists.getWhishList("alkis")?.printWhislist(products);
+wishlists.getWishList("alkis")?.printWhislist(products);
+
+console.log("________________________");
+for (const wishlist of wishlists) {
+  console.log(wishlist);
+}
