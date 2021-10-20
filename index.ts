@@ -4,62 +4,51 @@ const line = (() => {
   return () => l(`_______________${num++}_______________`);
 })();
 
-/* 1. Write the function camelize(str) that changes dash-separated words like “my-short-string” into camel-cased “myShortString”.
-That is: removes all dashes, each word after dash becomes uppercased.
-Examples:
-
-console.log(camelize("background-color")) == 'backgroundColor';
-console.log(camelize("list-style-image")) == 'listStyleImage';
-console.log(camelize("-webkit-transition")) == 'WebkitTransition'; */
-line()
-const camelize = (str: string) => str.split("-").map((word,index) => index >= 1 ? word[0].toUpperCase() + word.slice(1) : word).join("");
-
-console.log(camelize("background-color") == 'backgroundColor');
-console.log(camelize("list-style-image") == 'listStyleImage');
-console.log(camelize("-webkit-transition") == 'WebkitTransition');
-
-
-/* 2. You have an array of user objects, each one has name, surname and id.
-Write the code to create another array from it, of objects with id and fullName, where fullName is generated from name and surname.
+/* 1. Write a function filterRange(arr, a, b) that gets an array arr, looks for elements with values higher or equal to a and lower or equal to b and return a result as an array.
+The function should not modify the array. It should return the new array.
 For instance:
 
-let john = { name: "John", surname: "Smith", id: 1 };
-let pete = { name: "Pete", surname: "Hunt", id: 2 };
-let mary = { name: "Mary", surname: "Key", id: 3 };
+let arr = [5, 3, 8, 1];
 
-let users = [ john, pete, mary ];
+let filtered = filterRange(arr, 1, 4);
 
-let usersMapped = /* ... your code ... */
+console.log( filtered ); // 3,1 (matching values)
 
+console.log( arr ); // 5,3,8,1 (not modified) */
 
-/* usersMapped = [
-  { fullName: "John Smith", id: 1 },
-  { fullName: "Pete Hunt", id: 2 },
-  { fullName: "Mary Key", id: 3 }
-]
+const filterRange = (nums: number[], lowerBound: number, upperBound: number) =>
+  nums.filter((num) => num >= lowerBound && num <= upperBound);
 
+let arr = [5, 3, 8, 1];
 
-console.log( usersMapped[0].id ) // 1
-console.log( usersMapped[0].fullName ) // John Smith
-So, actually you need to map one array of objects to another. Try using => here. There’s a small catch. */
+let filtered = filterRange(arr, 1, 4);
 
-type user = {
-    name: string;
-    surname: string;
-    id: number;
-}
+console.log(filtered); // 3,1 (matching values)
 
-type userMapped = {
-    fullName: string;
-    id: number;
-}
+console.log(arr); // 5,3,8,1 (not modified)
 
-let john = { name: "John", surname: "Smith", id: 1 };
-let pete = { name: "Pete", surname: "Hunt", id: 2 };
-let mary = { name: "Mary", surname: "Key", id: 3 };
+/* 2. Write a function filterRangeInPlace(arr, a, b) that gets an array arr and removes from it all values except those that are between a and b. The test is: a ≤ arr[i] ≤ b.
+The function should only modify the array. It should not return anything.
+For instance:
 
-let users = [ john, pete, mary ];
+let arr = [5, 3, 8, 1];
 
-const usersMapped: userMapped[] = ((users: user[])=>users.map(user => {return {fullName: `${user.name} ${user.surname}`, id: user.id }}))(users)
+filterRangeInPlace(arr, 1, 4); // removed the numbers except from 1 to 4
 
-l(usersMapped)
+console.log( arr ); // [3, 1] */
+
+const filterRangeInPlace = (
+  nums: number[],
+  lowerBound: number,
+  upperBound: number
+) =>
+  nums.forEach(
+    (num, index) =>
+      !(num >= lowerBound && num <= upperBound) && nums.splice(index, 1)
+  );
+
+let arr2 = [5, 3, 8, 1,4,4];
+
+filterRangeInPlace(arr2, 1, 4); // removed the numbers except from 1 to 4
+
+console.log(arr2); // [3, 1]
