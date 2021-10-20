@@ -4,51 +4,56 @@ const line = (() => {
   return () => l(`_______________${num++}_______________`);
 })();
 
-/* 1. Write a function filterRange(arr, a, b) that gets an array arr, looks for elements with values higher or equal to a and lower or equal to b and return a result as an array.
-The function should not modify the array. It should return the new array.
-For instance:
+/* 1. Let’s say we received an array of users in the form {id:..., name:..., age... }.
+Create a function groupById(arr) that creates an object from it, with id as the key, and array items as values.
+For example:
 
-let arr = [5, 3, 8, 1];
+let users = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
 
-let filtered = filterRange(arr, 1, 4);
+let usersById = groupById(users);
 
-console.log( filtered ); // 3,1 (matching values)
+/*
+console.log(usersById)
+// after the call we should have:
 
-console.log( arr ); // 5,3,8,1 (not modified) */
+usersById = {
+  john: {id: 'john', name: "John Smith", age: 20},
+  ann: {id: 'ann', name: "Ann Smith", age: 24},
+  pete: {id: 'pete', name: "Pete Peterson", age: 31},
+}
 
-const filterRange = (nums: number[], lowerBound: number, upperBound: number) =>
-  nums.filter((num) => num >= lowerBound && num <= upperBound);
+Such function is really handy when working with server data.
 
-let arr = [5, 3, 8, 1];
+In this task we assume that id is unique. There may be no two array items with the same id.
 
-let filtered = filterRange(arr, 1, 4);
+Please use array .reduce method in the solution. */
 
-console.log(filtered); // 3,1 (matching values)
+type user = {
+  id: string;
+  name: string;
+  age: number;
+};
 
-console.log(arr); // 5,3,8,1 (not modified)
+type userById = {
+  [key: string]: user;
+};
 
-/* 2. Write a function filterRangeInPlace(arr, a, b) that gets an array arr and removes from it all values except those that are between a and b. The test is: a ≤ arr[i] ≤ b.
-The function should only modify the array. It should not return anything.
-For instance:
+const groupById = (users: user[]) =>
+  users.reduce((userById, user) => {
+    userById[user.id] = user;
+    return userById;
+  }, {} as userById);
 
-let arr = [5, 3, 8, 1];
-
-filterRangeInPlace(arr, 1, 4); // removed the numbers except from 1 to 4
-
-console.log( arr ); // [3, 1] */
-
-const filterRangeInPlace = (
-  nums: number[],
-  lowerBound: number,
-  upperBound: number
-) =>
-  nums.forEach(
-    (num, index) =>
-      !(num >= lowerBound && num <= upperBound) && nums.splice(index, 1)
-  );
-
-let arr2 = [5, 3, 8, 1,4,4];
-
-filterRangeInPlace(arr2, 1, 4); // removed the numbers except from 1 to 4
-
-console.log(arr2); // [3, 1]
+  let users = [
+    {id: 'john', name: "John Smith", age: 20},
+    {id: 'ann', name: "Ann Smith", age: 24},
+    {id: 'pete', name: "Pete Peterson", age: 31},
+  ];
+  
+  let usersById = groupById(users);
+  
+  console.log(usersById)
