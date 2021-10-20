@@ -1,115 +1,273 @@
-/* 1. The Greater Numbers. Create a function which accepts two arguments: the first argument being an array of numbers, 
-and the second argument being a number. The function should return the elements of the array which are greater than the second argument.
+const l = (...args: any) => console.log(...args);
+const line = (() => {
+  let num = 1;
+  return () => l(`_______________${num++}_______________`);
+})();
 
-i.e.
-
-findGreatest([3, 4, 5], 4) ➞ 5
-
-findGreatest([10, 20, 30], 12) ➞ 20, 30
-
-findGreatest([0, 10, 3], 4) ➞ 10 */
-
-const findGreater = (numbers: number[], limit: number) => numbers.filter(number => number > limit)
-
-console.log(findGreater([3, 4, 5], 4));
-console.log(findGreater([10, 20, 30], 12));
-console.log(findGreater([0, 10, 3], 4));
-
-
-/* 2. For the longest word. Create a function to find the longest word in a given string.
-
-i.e. longestWord("this is a web development course") ➞ "development" */
-
-const longestWord = (str: string) => str.split(" ").reduce((word1, word2) => word1.length >= word2.length ? word1 : word2)
-
-console.log(longestWord("this is a web development course"));
-
-/* 3. Reverse. Create a function to reverse a number.
-
-i.e. reverse(34532) ➞ 23543 */
-
-const reverse = (num: number) => Number(num.toString().split("").reverse().join(""))
-
-console.log(reverse(34532));
-
-/* 4. AEIOU: Vowels. Create a function that takes a string in its parameters and counts the number of vowels (i.e. in English, "a, e, i, o, u") in the string.
-
-i.e. findVowels("this is a string") ➞ 4 */
-
-const findVowels = (str: string) => str.match(/[aeiou]/g)?.length ?? 0;
-
-console.log(findVowels("this is a string"));
-
-/* 5. Missing Number. Create a function that takes an array of all integers between 1 and 10 (excluding one) and returns the missing integer.
+/* 1. Where Have My Four Letter Words Gone? 
+Create a function that takes an array of strings. 
+Return all words in the array that are exactly four letters.
 
 Examples:
 
-missingNums([1, 2, 3, 4, 6, 7, 8, 9, 10]) ➞ 5
-missingNums([7, 2, 3, 6, 5, 9, 1, 4, 8]) ➞ 10
-missingNums([10, 5, 1, 2, 4, 6, 8, 3, 9]) ➞ 7 */
-
-const missingNums = (nums: number[]) => (nums.sort((a,b) => a-b).find((num, index) => num !== index+1) as number - 1) || 10
-
-
-console.log(missingNums([1, 2, 3, 4, 6, 7, 8, 9, 10]));
-console.log(missingNums([7, 2, 3, 6, 5, 9, 1, 4, 8]))
-console.log(missingNums([10, 5, 1, 2, 4, 6, 8, 3, 9]))
-
-/* 6. Cubed. Create a function that takes in an array of numbers and returns the sum of its cubes.
-
-Examples:
-
-sumOfCubes([1, 5, 9]) ➞ 855 // Since 1^3 + 5^3 + 9^3 = 1 + 125 + 729 = 855
-sumOfCubes([2]) ➞ 8
-sumOfCubes([]) ➞ 0 */
-
-const sumOfCubes = (nums: number[]) => nums.reduce((prev, cur)=> prev + cur**3, 0)
-
-console.log(sumOfCubes([1, 5, 9]));
-console.log(sumOfCubes([2]));
-console.log(sumOfCubes([]));
-
-
-/* 7. Dictionary. Create a function that takes an initial string and an array of words, and returns a filtered array of the words that start with the same letters as the initial string.
-
-Notes:
-
-If none of the words match, return an empty array.
-Keep the filtered array in the same relative order as the original array of words.
-Examples:
-
-dictionary("bu", ["button", "breakfast", "border"]) ➞ ["button"]
-dictionary("tri", ["triplet", "tries", "trip", "piano", "tree"]) ➞ ["triplet", "tries", trip"]
-dictionary("beau", ["pastry", "delicious", "name", "boring"]) ➞ [] */
-
-const dictionary = (start: string, words: string[]) => words.filter(word => word.startsWith(start))
-
-console.log(dictionary("bu", ["button", "breakfast", "border"]))
-console.log(dictionary("tri", ["triplet", "tries", "trip", "piano", "tree"]) )
-console.log(dictionary("beau", ["pastry", "delicious", "name", "boring"]) )
-
-/* 8. Even Number Generator. Create a function that finds all even numbers from 1 to the given number.
-
-Examples:
-
-evenNums(8) ➞ [2, 4, 6, 8]
-evenNums(4) ➞ [2, 4]
-evenNums(2) ➞ [2] Notes:
-If there are no even numbers, return an empty array.
-Do not include 0.
+isFourLetters(["John", "James", "Jack", "Jeanne"]) ➞ ["John", "Jack"]
+isFourLetters(["Tomato", "Corn", "Lettuce"]) ➞ ["Corn"]
+isFourLetters(["Dog", "Cat", "Deer"]) ➞ ["Deer"] 
 */
+line();
 
-const evenNums = (max: number) => Array(Math.floor(max/2)).fill(0).map((val,index) => (index+1)*2)
+const isFourLetters = (arr: string[]) =>
+  arr.filter((item) => item.length === 4);
 
-console.log(evenNums(9))
-console.log(evenNums(4) )
-console.log(evenNums(2) )
+l(isFourLetters(["John", "James", "Jack", "Jeanne"]));
+l(isFourLetters(["Tomato", "Corn", "Lettuce"]));
+l(isFourLetters(["Dog", "Cat", "Deer"]));
 
-/* Bonus: Alphabetical Order. Create a function to sort a string into alphabetical order. 
-NB: assume numbers, symbols and punctuation are not included in the string.
+/* 2. Months. Create a function that takes a number (from 1 to 12) and return its corresponding month name as a string.
 
-i.e. alphaOrder("webdev") ➞ "bdeevw" */
+Examples:
 
-const alphaOrder = (str: string) => str.split("").sort().join("")
+monthName(3) ➞ "March"
+monthName(12) ➞ "December"
+monthName(6) ➞ "June" */
 
-console.log(alphaOrder("webdev"));
+line();
+
+const monthName = (num: number) =>
+  [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ][num - 1];
+
+l(monthName(3));
+l(monthName(12));
+l(monthName(6));
+
+/* 3. Amplify the Multiples of 4. Create a function that takes an integer and returns an array of integers ascending from 1 to the given number, where:
+
+For each number in the array that can be evenly divided by 4, that number is amplified by 10 (i.e. return 10 times the number).
+If the number cannot be divided evenly by 4, simply return the number.
+The given integer will always be equal to or greater than 1.
+Include the given number (the number in the parameters).
+Examples:
+
+amplify(4) ➞ [1, 2, 3, 40]
+amplify(3) ➞ [1, 2, 3]
+amplify(25) ➞ [1, 2, 3, 40, 5, 6, 7, 80, 9, 10, 11, 120, 13, 14, 15, 160, 17, 18, 19, 200, 21, 22, 23, 240, 25] */
+line();
+
+const amplify = (num: number) =>
+  Array(num)
+    .fill(null)
+    .map((item, index) =>
+      (index + 1) % 4 === 0 ? (index + 1) * 10 : index + 1
+    );
+
+l(amplify(4));
+l(amplify(3));
+l(amplify(25));
+
+/* 4. One is not like the others... Create a function that takes an array of numbers and return the number that's unique.
+
+Examples:
+
+unique([3, 3, 3, 7, 3, 3]) ➞ 7
+unique([0, 0, 0.77, 0, 0]) ➞ 0.77
+unique([0, 1, 1, 1, 1, 1, 1, 1]) ➞ 0 */
+line();
+
+const unique = (arr: number[]) =>
+  arr.find((item, index, arr) => !arr.slice(index + 1).includes(item));
+
+l(unique([3, 3, 3, 7, 3, 3]));
+l(unique([0, 0, 0.77, 0, 0]));
+l(unique([0, 1, 1, 1, 1, 1, 1, 1]));
+
+/* 5. Word Ranking. Create a function that takes a string of words and returns the highest scoring word. 
+Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3, etc.
+
+The returned string should only contain alphabetic characters (a-z).
+Preserve case in the returned string (see 4th example above).
+Examples:
+
+wordRank("The quick brown fox.") ➞ "brown"
+wordRank("Nancy is very pretty.") ➞ "pretty"
+wordRank("Check back tomorrow, man!") ➞ "tomorrow"
+wordRank("Today is Wednesday.") ➞ "Wednesday" */
+
+line();
+
+const wordRank = (sentence: string) => {
+  const words = sentence.split(" ");
+  const getScore = (word: string) => {
+    const lowerWord = word.toLowerCase();
+    const alphaChars = lowerWord.match(/[a-z]/g);
+    const wordScore = alphaChars
+      ? alphaChars.reduce((total, char) => total + (char.charCodeAt(0) ?? 0), 0)
+      : 0;
+    return wordScore;
+  };
+  const wordScores = words.map((word) => getScore(word));
+  const highestScore = Math.max(...wordScores);
+  const indexOfHighestWord = wordScores.indexOf(highestScore);
+  return words[indexOfHighestWord].match(/[a-zA-Z]/g)?.join("") ?? "";
+};
+
+l(wordRank("The quick brown fox."));
+l(wordRank("Nancy is very pretty."));
+l(wordRank("Check back tomorrow, man!"));
+l(wordRank("Today is Wednesday."));
+
+/* 6. c4n y0u r34d th15? Create a function that takes a string as an argument and returns a coded (h4ck3r 5p34k) version of the string. 
+NB: for your program to work properly, the function should replace all 'a's with 4, 'e's with 3, 'i's with 1, 'o's with 0, and 's's with 5.
+
+Examples:
+
+hackerSpeak("javascript is cool") ➞ "j4v45cr1pt 15 c00l"
+hackerSpeak("programming is fun") ➞ "pr0gr4mm1ng 15 fun"
+hackerSpeak("become a coder") ➞ "b3c0m3 4 c0d3r" */
+line();
+
+const hackerSpeak = (sentence: string) => {
+  type map = {
+    a: 4;
+    e: 3;
+    i: 1;
+    o: 0;
+    s: 5;
+  };
+  const map = {
+    a: 4,
+    e: 3,
+    i: 1,
+    o: 0,
+    s: 5,
+  };
+  return sentence
+    .split("")
+    .map((char) => (char in map ? map[char as keyof map] : char))
+    .join("");
+};
+
+l(hackerSpeak("javascript is cool"));
+l(hackerSpeak("programming is fun"));
+l(hackerSpeak("become a coder"));
+
+/* 1. Is it Symmetrical? Create a function that takes a number as an argument and returns true or false depending on 
+whether the number is symmetrical or not. NB: A number is symmetrical when it is the same as its reverse.
+
+Examples:
+
+isSymmetrical(7227) ➞ true
+isSymmetrical(12567) ➞ false
+isSymmetrical(44444444) ➞ true
+isSymmetrical(9939) ➞ false
+isSymmetrical(1112111) ➞ true */
+line();
+
+const isSymmetrical = (num: number) =>
+  Number(num.toString().split("").reverse().join("")) === num;
+
+l(isSymmetrical(7227));
+l(isSymmetrical(12567));
+l(isSymmetrical(44444444));
+l(isSymmetrical(9939));
+l(isSymmetrical(1112111));
+
+/* 2. snake_case ➞ camelCase Create a function toCamelCase() that takes a single string in snake_case and converts it into camelCase.
+
+Examples:
+
+toCamelCase("hello_world") ➞ "helloWorld"
+toCamelCase("javascript_is_fun") ➞ "javascriptIsFun" */
+line();
+
+const snakeToCamelCase = (str: string) =>
+  str
+    .split("_")
+    .map((word, index) =>
+      index > 0 ? word[0].toUpperCase() + word.slice(1) : word
+    )
+    .join("");
+
+l(snakeToCamelCase("hello_world"));
+l(snakeToCamelCase("javascript_is_fun"));
+
+/* 3. Pig Latin Translation. Create a function that takes a string of words and moves the first letter of each word to the end of it, 
+then adds 'ay' to the end of the word. This is a basic form of "Pig Latin".
+
+Move the first letter of each word to the end of the word.
+Add "ay" to the end of the word.
+Words starting with a vowel (A, E, I, O, U) append "way" to the end instead.
+Extra Practice
+
+Preserve proper capitalization as in the examples below.
+Examples:
+
+pigLatin("Cats are great pets.") ➞ "Atscay areway reatgay etspay."
+pigLatin("Tom got a small piece of pie.") ➞ "Omtay otgay away allsmay iecepay ofway iepay."
+pigLatin("He told us a very exciting tale.") ➞ "Ehay oldtay usway away eryvay excitingway aletay." */
+
+line();
+
+const pigLatin = (sentence: string) => {
+  const words = sentence.split(" ");
+  const pigWords = words.map((word) => {
+    const lowerCaseWordWithoutSpecialChars =
+      word.toLowerCase().match(/[a-z]/g)?.join("") ?? "";
+    let pigWord: string;
+
+    if (isVowel(word[0].toLowerCase())) {
+      pigWord = lowerCaseWordWithoutSpecialChars + "way";
+    } else {
+      pigWord =
+        lowerCaseWordWithoutSpecialChars.slice(1) +
+        lowerCaseWordWithoutSpecialChars[0] +
+        "ay";
+    }
+
+    if (endsWithSpecialChar(word)) pigWord = pigWord + word[word.length - 1];
+
+    if (isCapital(word)) pigWord = pigWord[0].toUpperCase() + pigWord.slice(1);
+
+    if (startsWithSpecialChar(word)) pigWord = word[0] + pigWord
+
+    return pigWord;
+  });
+  return pigWords.join(" ");
+};
+
+function isCapital(word: string) {
+  return word[0] === word[0].toUpperCase();
+}
+
+function isVowel(char: string) {
+  const vowels = ["a", "e", "i", "o", "u"];
+  return vowels.includes(char);
+}
+
+function endsWithSpecialChar(word: string) {
+  return word[word.length - 1].match(/[a-z]/g) === null;
+}
+
+function startsWithSpecialChar(word: string) {
+  return word[0].match(/[a-zA-Z]/g) === null;
+}
+
+l(
+  pigLatin(
+    "Cats are great pets, which can help prevent deseases. Especially 'Mikey Mouse' can confirm this!"
+  )
+);
+l(pigLatin("Tom got a small piece of pie."));
+l(pigLatin("He told us a very exciting tale."));
