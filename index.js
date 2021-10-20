@@ -70,7 +70,11 @@ unique([3, 3, 3, 7, 3, 3]) ➞ 7
 unique([0, 0, 0.77, 0, 0]) ➞ 0.77
 unique([0, 1, 1, 1, 1, 1, 1, 1]) ➞ 0 */
 line();
-const unique = (arr) => arr.find((item, index, arr) => !arr.slice(index + 1).includes(item));
+const unique = (arr) => arr.filter((item, index, arr) => {
+    const others = [...arr];
+    others.splice(index, 1);
+    return !others.includes(item);
+});
 l(unique([3, 3, 3, 7, 3, 3]));
 l(unique([0, 0, 0.77, 0, 0]));
 l(unique([0, 1, 1, 1, 1, 1, 1, 1]));

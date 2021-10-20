@@ -87,7 +87,10 @@ unique([0, 1, 1, 1, 1, 1, 1, 1]) ➞ 0 */
 line();
 
 const unique = (arr: number[]) =>
-  arr.find((item, index, arr) => !arr.slice(index + 1).includes(item));
+  arr.filter((item, index, arr) => {
+      const others = [...arr]
+      others.splice(index, 1)
+    return !others.includes(item)});
 
 l(unique([3, 3, 3, 7, 3, 3]));
 l(unique([0, 0, 0.77, 0, 0]));
