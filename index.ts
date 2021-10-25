@@ -4,181 +4,128 @@ const line = (() => {
   return () => l(`_______________${num++}_______________`);
 })();
 
-/* 1. Let’s say we received an array of users in the form {id:..., name:..., age... }.
-Create a function groupById(arr) that creates an object from it, with id as the key, and array items as values.
-For example:
+/* Write pseudo-code for the following exercises on pen and paper.
 
-let users = [
-  {id: 'john', name: "John Smith", age: 20},
-  {id: 'ann', name: "Ann Smith", age: 24},
-  {id: 'pete', name: "Pete Peterson", age: 31},
-];
+1. Lowest to Highest
+Given an array of numbers from 1-9:
 
-let usersById = groupById(users);
+[4, 2, 5, 3, 9, 7, 1, 8, 2, 6];
+Sort the array from lowest value to highest. */
 
-/*
-console.log(usersById)
-// after the call we should have:
+const randomNumbers = Array(100000).fill(null).map(()=>Math.random() * 10000)
 
-usersById = {
-  john: {id: 'john', name: "John Smith", age: 20},
-  ann: {id: 'ann', name: "Ann Smith", age: 24},
-  pete: {id: 'pete', name: "Pete Peterson", age: 31},
-}
-
-Such function is really handy when working with server data.
-
-In this task we assume that id is unique. There may be no two array items with the same id.
-
-Please use array .reduce method in the solution. */
-
-type user = {
-  id: string;
-  name: string;
-  age: number;
-};
-
-type userById = {
-  [key: string]: user;
-};
-
-const groupById = (users: user[]) =>
-  users.reduce((userById, user) => {
-    userById[user.id] = user;
-    return userById;
-  }, {} as userById);
-
-let users = [
-  { id: "john", name: "John Smith", age: 20 },
-  { id: "ann", name: "Ann Smith", age: 24 },
-  { id: "pete", name: "Pete Peterson", age: 31 },
-];
-
-let usersById = groupById(users);
-
-console.log(usersById);
-
-function minMaxDifference(array: number[]) {
-  const min = Math.min(...array);
-  const max = Math.max(...array);
-  return max - min;
-}
-
-let ARR = [
-  [1, 2, 1, 24],
-  [8, 11, 9, 4],
-  [7, 0, 7, 27],
-  [7, 4, 28, 14],
-  [3, 10, 26, 7],
-];
-
- let matrex = (arr: number[][]) => {
-  let output = "";
-  // for (let i = 0; i < arr.length; i++) {
-  //     output += 'row ' + i + '\n'
-  //     for (let j = 0; j < arr[i].length; j++) {
-  //         output += arr[i][j]
-  //         if ((arr[arr.length - 1])) output += '\n'
-  //     }
-  // }
-  let lastIdx = arr.length - 1;
-  for (let array of arr) {
-    output += "row " + arr.indexOf(array) + "\n";
-    for (let element of array) {
-      output += element + "\n";
-      // if(arr.indexOf(array) === lastIdx && array )
+function sortNumbersBubble(arr: number[]):number[]{
+  const sortedArray: number[] = [...arr];
+  let swappedItems = false
+  do{
+    swappedItems = false
+    for(let i = 0; i < sortedArray.length; i++){
+      if(sortedArray[i] > sortedArray[i+1]){
+        const tmp = sortedArray[i+1]
+        sortedArray[i+1] = sortedArray[i]
+        sortedArray[i] = tmp
+        swappedItems = true
+      }
     }
-  }
-  return output;
-}; 
-
-/* Q2. Given the following array:
-
-const ARR = [[1, 2, 1, 24], [8, 11, 9, 4], [7, 0, 7, 27], [7, 4, 28, 14], [3, 10, 26, 7]];
-Create the following output:
-
-row 0 
- 1 
- 2 
- 1
- 24
-row 1
- 8 
- 11 
- 9
- 4
-row 2
- ...
-(and so on) */
-
-ARR = [
-  [1, 2, 1, 24],
-  [8, 11, 9, 4],
-  [7, 0, 7, 27],
-  [7, 4, 28, 14],
-  [3, 10, 26, 7],
-];
-
-
-function printArray(array: number[][]) {
-  let result = "";
-  for (let i = 0; i < array.length; i++) {
-    const row = array[i];
-    result += `row ${i} \n`;
-    for (let j = 0; j < row.length; j++) {
-      const item = row[j];
-      result += ` ${item}`;
-      if (!(j === row.length - 1 && i === array.length-1)) result += "\n"
-    }
-  }
-  return result
+  }while(swappedItems)
+  return sortedArray
 }
 
-console.log(printArray(ARR));
-line()
-let obj1 = {
-  name: "aghy",
-  grades: {
-    math: 7,
-    history: 90
-  },
-  avgGrade: function(){
-    const grades = Object.values(this.grades)
-    let total = 0
-    for (const grade of grades) {
-      total += grade
-    }
-    return total / grades.length
+function sortNumbers(arr: number[]): number[] {
+  const sortedArray: number[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    insertNumberInSortedArray(sortedArray, element);
   }
+  return sortedArray;
 }
 
-function recursiveCopy(any:any){
-  if(typeof any === "object" && any !== null){
-    const copy = {...any}
-    for (const key in copy) {
-      if(typeof copy[key] === "object") copy[key] = recursiveCopy(copy[key])
-    }
-    return copy
-  }else{
-    return any
+function sortNumbersBinary(arr: number[]): number[] {
+  const sortedArray: number[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    insertNumberInSortedArrayBinary(sortedArray, element);
   }
+  return sortedArray;
 }
 
-let objWithRecCopy = recursiveCopy(obj1)
-let objWithJson = JSON.parse(JSON.stringify(obj1))
-let objWithSpread = {...obj1}
-let objAssign = Object.assign({}, obj1)
+function insertNumberInSortedArrayBinary(
+  sortedArr: number[],
+  number: number
+): number[] {
+  let lowerBound = 0;
+  let upperBound = sortedArr.length;
+  let indexToInsert = lowerBound;
 
-obj1.grades.math = 90
+  while (lowerBound !== upperBound) {
+    if (sortedArr[lowerBound] <= number) {
+      lowerBound += Math.ceil((upperBound - lowerBound) / 2);
+    } else {
+      upperBound = lowerBound;
+      lowerBound -= Math.ceil(upperBound / 2);
+    }
+    indexToInsert = lowerBound;
+  }
+  /* for (let index = 0; index < sortedArr.length; index++) {
+    const element = sortedArr[index];
+    if(element <= number) indexToInsert = index+1;
+    if(element > number) break;
+  } */
+  sortedArr.splice(indexToInsert, 0, number);
+  return sortedArr;
+}
 
-console.log(obj1)
-console.log(objWithSpread);
-console.log(objWithJson);
-console.log(objAssign)
+function insertNumberInSortedArray(
+  sortedArr: number[],
+  number: number
+): number[] {
+  let lowerBound = 0;
+  let upperBound = sortedArr.length;
+  let indexToInsert = lowerBound;
+
+  for (let index = 0; index < sortedArr.length; index++) {
+    const element = sortedArr[index];
+    if (element <= number) indexToInsert = index + 1;
+    if (element > number) break;
+  }
+  sortedArr.splice(indexToInsert, 0, number);
+  return sortedArr;
+}
 
 
 
 
+console.time("sortNumbers")
+const arr1 = sortNumbers(randomNumbers)
+console.timeEnd("sortNumbers")
 
+console.time("sortNumbersBinary")
+const arr2 = sortNumbersBinary(randomNumbers)
+console.timeEnd("sortNumbersBinary")
 
-console.log(objWithRecCopy);
+console.time("sortNumbersBubble")
+const arr3 = sortNumbersBubble(randomNumbers)
+console.timeEnd("sortNumbersBubble")
+
+console.time("sort Method")
+const newarr = [...randomNumbers]
+const arr4 = newarr.sort((a,b)=>a-b)
+console.timeEnd("sort Method") 
+
+function checkAllEqual(...arrays: any){
+  let allEqual = true
+  const first = arrays[0]
+  for (let index = 0; index < first.length; index++) {
+    const element = first[index]
+    for(let j = 1; j < arrays.length; j++) {
+      if(element !== arrays[j][index]) {
+        allEqual = false;
+        break
+      } 
+    }
+    if(!allEqual) break
+  }
+  return allEqual
+}
+
+console.log(checkAllEqual(arr1, arr2, arr3, arr4));
