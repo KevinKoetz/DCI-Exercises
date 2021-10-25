@@ -302,6 +302,14 @@ function intersectionDeep(obj1: any, obj2: any) {
       let tmpObj= {} as any
       tmpObj[key] = intersectionDeep(obj1[key], obj2[key])
       res = Object.assign(res, tmpObj)
+    } else if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])){
+      let tmpObj= {} as any
+      const intersectionValues = Object.values(intersectionDeep(obj1[key], obj2[key]))
+      if(intersectionValues.length){
+        tmpObj[key] = [...intersectionValues]
+      res = Object.assign(res, tmpObj)
+      }
+      
     }
   }
   return res;
@@ -309,4 +317,4 @@ function intersectionDeep(obj1: any, obj2: any) {
 
 data = { a: 1, b: { c: 3 } } as any;
 data2 = { c: 1, b: { c: 3 } } as any;
-console.log(intersectionDeep({ a: 1, b: { c: 3, d:{e:8, f:9}},x:{}, y:[], z:null }, { c: 1, b: { c: 3, d:{e:8, f:10}},x:{}, y:[], z:null })); // { b: { c: 3 } }
+console.log(intersectionDeep(data, data2)); // { b: { c: 3 } }
