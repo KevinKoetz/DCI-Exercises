@@ -1,5 +1,3 @@
-import { type } from "os";
-
 const l = (...args: any) => console.log(...args);
 const line = (() => {
   let num = 1;
