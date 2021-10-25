@@ -290,7 +290,7 @@ Expected Result: ({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }) => { b: { c: 3 }
     const data = { a: 1, b: { c: 3 } };  
     const data2 = { c: 1, b: { c: 3 } };
     console.log(intersectionDeep(data, data2)); // { b: { c: 3 } } */
-
+line()
 function intersectionDeep(obj1: any, obj2: any) {
   let res = {} as any;
   const commonKeys = Object.keys(obj1).reduce((commonKeys, key) => {
@@ -311,4 +311,4 @@ function intersectionDeep(obj1: any, obj2: any) {
 
 data = { a: 1, b: { c: 3 } } as any;
 data2 = { c: 1, b: { c: 3 } } as any;
-console.log(intersectionDeep({ a: 1, b: { c: 3, d:{e:8, f:9}} }, { c: 1, b: { c: 3, d:{e:8, f:10}} })); // { b: { c: 3 } }
+console.log(intersectionDeep({ a: 1, b: { c: 3, d:{e:8, f:9}},x:{}, y:[], z:null }, { c: 1, b: { c: 3, d:{e:8, f:10}},x:{}, y:[], z:null })); // { b: { c: 3 } }
