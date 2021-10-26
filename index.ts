@@ -122,6 +122,7 @@ function isEqual<T>(obj1: T, obj2: T) {
   )
     return false;
 
+    //Check if all the values within the object or array are the same using strict equality
   for (const key in obj1) {
     if (obj1[key] !== obj2[key]) return false;
   }
@@ -288,7 +289,7 @@ Expected Result: ({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }) => { b: { c: 3 }
     const data = { a: 1, b: { c: 3 } };  
     const data2 = { c: 1, b: { c: 3 } };
     console.log(intersectionDeep(data, data2)); // { b: { c: 3 } } */
-line()
+line();
 function intersectionDeep(obj1: any, obj2: any) {
   let res = {} as any;
   const commonKeys = Object.keys(obj1).reduce((commonKeys, key) => {
@@ -299,17 +300,18 @@ function intersectionDeep(obj1: any, obj2: any) {
     if (isEqual(obj1[key], obj2[key])) {
       res[key] = obj1[key];
     } else if (isPlainObject(obj1[key]) && isPlainObject(obj2[key])) {
-      let tmpObj= {} as any
-      tmpObj[key] = intersectionDeep(obj1[key], obj2[key])
-      res = Object.assign(res, tmpObj)
-    } else if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])){
-      let tmpObj= {} as any
-      const intersectionValues = Object.values(intersectionDeep(obj1[key], obj2[key]))
-      if(intersectionValues.length){
-        tmpObj[key] = [...intersectionValues]
-      res = Object.assign(res, tmpObj)
+      let tmpObj = {} as any;
+      tmpObj[key] = intersectionDeep(obj1[key], obj2[key]);
+      res = Object.assign(res, tmpObj);
+    } else if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
+      let tmpObj = {} as any;
+      const intersectionValues = Object.values(
+        intersectionDeep(obj1[key], obj2[key])
+      );
+      if (intersectionValues.length) {
+        tmpObj[key] = [...intersectionValues];
+        res = Object.assign(res, tmpObj);
       }
-      
     }
   }
   return res;
@@ -318,3 +320,16 @@ function intersectionDeep(obj1: any, obj2: any) {
 data = { a: 1, b: { c: 3 } } as any;
 data2 = { c: 1, b: { c: 3 } } as any;
 console.log(intersectionDeep(data, data2)); // { b: { c: 3 } }
+
+line();
+
+let x = { a: 1, b: [] };
+let y = { c: 1, b: [] };
+let intersect = Object.keys(x)
+  .filter((c) => Object.keys(y).indexOf(c) !== -1)
+  .reduce((a, b) => {
+    let b1 = {};
+    if(isEqual(x[b],y[b])) b1[b] = x[b];
+    return { ...a, ...b1 };
+  }, {});
+console.log(intersect);
