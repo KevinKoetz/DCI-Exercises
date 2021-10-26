@@ -12,9 +12,9 @@ In mathematics, the factorial of a non-negative integer n, denoted by n!, is the
 
     factorial(5)  // return 120 */
 
-function factorial(n: number) : number {
-  if(n === 0) return 1
-  return n * factorial(n-1)
+function factorial(n: number): number {
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
 }
 
 console.log(factorial(5));
@@ -25,12 +25,14 @@ Write a JavaScript function that reverse a string. Sample Data and output: Examp
     const string="hello world"
     reverse(string)  // return dlrow olleh */
 
-function reverseString(str: string): string{
-  if(str.length <= 1) return str
-  return str[str.length - 1] + reverseString(str.slice(1,str.length - 1)) + str[0]
+function reverseString(str: string): string {
+  if (str.length <= 1) return str;
+  return (
+    str[str.length - 1] + reverseString(str.slice(1, str.length - 1)) + str[0]
+  );
 }
 
-const string="hello world"
+const string = "hello world";
 console.log(reverseString("string")); // return dlrow olleh */
 
 /* Recursion
@@ -45,16 +47,42 @@ fibonnaci(2)=> [0,1,1]
 fibonnaci(8)=> [0, 1, 1, 2, 3, 5, 8, 13,21]
     fibonnaci(8) //  [0, 1, 1, 2, 3, 5, 8, 13,21]   */
 
-    function Fibonacci(n: bigint, map: Map<bigint,bigint> = new Map()): bigint{
-      if(map.get(n) !== undefined) return map.get(n) as bigint
-      if(n === 0n) return 0n
-      if(n === 1n) return 1n
-        const nthFib = Fibonacci(n-1n, map) + Fibonacci(n-2n, map)
-        map.set(n, nthFib)
-        return nthFib
-      
-    }
-     
-    
-    
-    console.log(Fibonacci(800n));
+function Fibonacci(n: bigint, map: Map<bigint, bigint> = new Map()): bigint {
+  if (map.get(n) !== undefined) return map.get(n) as bigint;
+  if (n === 0n) return 0n;
+  if (n === 1n) return 1n;
+  const nthFib = Fibonacci(n - 1n, map) + Fibonacci(n - 2n, map);
+  map.set(n, nthFib);
+  return nthFib;
+}
+
+console.log(Fibonacci(800n));
+
+
+function isObject<T>(obj: T): obj is object & typeof obj {
+  return typeof obj === "object" && obj !== null;
+}
+
+
+function sum2(n: bigint): bigint {
+  function recur(n: bigint, acc: bigint): bigint | Function {
+      if (n == 0n) {
+          return acc;
+      } else {
+          return recur.bind(null, n-1n, n+acc);
+      }
+  }
+  return trampoline(recur.bind(null, n, 1n));
+}
+
+
+function trampoline(f: Function){
+  while(f && f instanceof Function){
+    f = f()
+  }
+  return f
+}
+
+console.log(sum2(5000000n));
+
+
