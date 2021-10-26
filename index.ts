@@ -4,125 +4,35 @@ const line = (() => {
   return () => l(`_______________${num++}_______________`);
 })();
 
-/*1. What’s the result of executing this code and why.
-function test() {
-   console.log(a);
-   console.log(foo());
-   
-   var a = 1;
-   function foo() {
-      return 2;
-   }
-}
+/* Calculate the sum of natural number up to n
+Write a JavaScript program to compute the sum of an array of integers
+    const array = [1, 2, 3, 4, 5, 6]
+    sum(array)  // return 21 */
 
-test(); 
-
-Logging to Console:
-undefined
-2
-*/
-
-function test() {
-  console.log(a);
-  console.log(foo());
-  
-  var a = 1;
-  function foo() {
-     return 2;
+function sum(arr: number[]): number{
+  if(arr.length === 1){
+    return arr[0]
+  }else{
+    return arr[0] + sum(arr.slice(1))
   }
 }
 
-test(); 
+console.log(sum([1, 2, 3, 4, 5, 6]));
 
-/* 2 What is result?
-var a = 1; 
+/**
+ * Fibonacci with Map
+ */
 
-function someFunction(number) {
-  function otherFunction(input) {
-    return a;
-  }
+function Fibonacci(n: bigint, map: Map<bigint,bigint> = new Map()): bigint{
+  if(map.get(n) !== undefined) return map.get(n) as bigint
+  if(n === 0n) return 0n
+  if(n === 1n) return 1n
+    const nthFib = Fibonacci(n-1n, map) + Fibonacci(n-2n, map)
+    map.set(n, nthFib)
+    return nthFib
   
-  a = 5;
-  
-  return otherFunction;
 }
-
-var firstResult = someFunction(9);
-var result = firstResult(2); 
-
-result = 5
-*/
-
-var a = 1; 
-
-function someFunction(number) {
-  function otherFunction(input) {
-    return a;
-  }
-  
-  a = 5;
-  
-  return otherFunction;
-}
-
-var firstResult = someFunction(9);
-var result = firstResult(2); 
-console.log(result);
-
-/* 
-3 What is the result of the following code? Explain your answer.
-var fullname = 'John Doe';
-var obj = {
-   fullname: 'Colin Ihrig',
-   prop: {
-      fullname: 'Aurelio De Rosa',
-      getFullname: function() {
-         return this.fullname;
-      }
-   }
-};
-
-console.log(obj.prop.getFullname()) <- 'Aurelio De Rosa' ;
-
-var test = obj.prop.getFullname;
-
-console.log(test()); <- depends In Strict Mode it's a runtime error, otherwise undefined*/
-
-var fullname = 'John Doe';
-var obj = {
-   fullname: 'Colin Ihrig',
-   prop: {
-      fullname: 'Aurelio De Rosa',
-      getFullname: function() {
-         return this.fullname;
-      }
-   }
-};
-
-console.log(obj.prop.getFullname()) ;
-
-var test = obj.prop.getFullname;
-
-//console.log(test())
+ 
 
 
-/* 4. What will you see in the console for the following example?
-var a = 1; 
-function b() { 
-    a = 10; 
-    return; 
-    function a() {} 
-} 
-b(); 
-console.log(a); //1
-
-*/
-
-var a = 1; 
-function b() { 
-    a = 10;    
-    return; 
-    function a() {} 
-} 
-b(); 
-console.log(a); //1
+console.log(Fibonacci(800n));
