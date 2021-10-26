@@ -123,7 +123,7 @@ function isEqual<T>(obj1: T, obj2: T) {
     return false;
 
     //Check if all the values within the object or array are the same using strict equality
-  for (const key in obj1) {
+  for (const key in {...obj1, ...obj2}) {
     if (obj1[key] !== obj2[key]) return false;
   }
   return true;
@@ -237,7 +237,7 @@ function isEqualDeep(obj1: any, obj2: any): boolean {
   //For everything else go through all the keys of the object and check if
   //they satisfy the definition of Equality above
   if (typeof obj1 === "object" && typeof obj2 === "object") {
-    for (const key in obj1) {
+    for (const key in {...obj1, ...obj2}) {
       result = isEqualDeep(obj1[key], obj2[key]);
       if (!result) break;
     }
