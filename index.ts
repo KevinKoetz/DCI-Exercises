@@ -4,45 +4,125 @@ const line = (() => {
   return () => l(`_______________${num++}_______________`);
 })();
 
-/* 1. In your own words, define closure (1-2 sentences). */
-
-/**
- * A Closure is a function and it's outer Lexical Environment which is defined inside an encapsulating Function
- */
-
-/*  2. Study the following code, then answer the questions below.
- function personalDice(name){
-   return function(){
-       // generate random number between 1 and 6
-     const newRoll = Math.floor(Math.random() * 6);
-     console.log(`${name} rolled a ${newRoll}`)
+/*1. What’s the result of executing this code and why.
+function test() {
+   console.log(a);
+   console.log(foo());
+   
+   var a = 1;
+   function foo() {
+      return 2;
    }
- }
- 
- const dansRoll = personalDice("Dan");
- 
- const zoesRoll = personalDice("Zoe");
- 
- 
- dansRoll();
- dansRoll();
- a. Where is closure used in this code? How can you tell?
- Inside the Personal Dice function
- b. Compare and contrast calling dansRoll the first and second time. What is always the same? What could change?
- The name variable is always "Dan" so the Console log will print always "Dan rolled a ${newRoll}"
- c. What is the lexical scope of newRoll? 
- It's local to the anonymous function defined and returned with personalDice
- */
+}
 
-/*  Write a function that would allow you to do this using a closure.
-var addSix = createBase(6);
-addSix(10); // returns 16
-addSix(21); // returns 27 */
+test(); 
 
-const createBase = (base: number) => {
-  return (number: number) => number + base;
+Logging to Console:
+undefined
+2
+*/
+
+function test() {
+  console.log(a);
+  console.log(foo());
+  
+  var a = 1;
+  function foo() {
+     return 2;
+  }
+}
+
+test(); 
+
+/* 2 What is result?
+var a = 1; 
+
+function someFunction(number) {
+  function otherFunction(input) {
+    return a;
+  }
+  
+  a = 5;
+  
+  return otherFunction;
+}
+
+var firstResult = someFunction(9);
+var result = firstResult(2); 
+
+result = 5
+*/
+
+var a = 1; 
+
+function someFunction(number) {
+  function otherFunction(input) {
+    return a;
+  }
+  
+  a = 5;
+  
+  return otherFunction;
+}
+
+var firstResult = someFunction(9);
+var result = firstResult(2); 
+console.log(result);
+
+/* 
+3 What is the result of the following code? Explain your answer.
+var fullname = 'John Doe';
+var obj = {
+   fullname: 'Colin Ihrig',
+   prop: {
+      fullname: 'Aurelio De Rosa',
+      getFullname: function() {
+         return this.fullname;
+      }
+   }
 };
 
-var addSix = createBase(6);
-console.log(addSix(10)); // returns 16
-console.log(addSix(21)); // returns 27 */
+console.log(obj.prop.getFullname()) <- 'Aurelio De Rosa' ;
+
+var test = obj.prop.getFullname;
+
+console.log(test()); <- depends In Strict Mode it's a runtime error, otherwise undefined*/
+
+var fullname = 'John Doe';
+var obj = {
+   fullname: 'Colin Ihrig',
+   prop: {
+      fullname: 'Aurelio De Rosa',
+      getFullname: function() {
+         return this.fullname;
+      }
+   }
+};
+
+console.log(obj.prop.getFullname()) ;
+
+var test = obj.prop.getFullname;
+
+//console.log(test())
+
+
+/* 4. What will you see in the console for the following example?
+var a = 1; 
+function b() { 
+    a = 10; 
+    return; 
+    function a() {} 
+} 
+b(); 
+console.log(a); //1
+
+*/
+
+var a = 1; 
+function b() { 
+    a = 10;    
+    return; 
+    function a() {} 
+} 
+b(); 
+console.log(a); //1
