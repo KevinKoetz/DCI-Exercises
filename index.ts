@@ -64,7 +64,7 @@ function isObject<T>(obj: T): obj is object & typeof obj {
 }
 
 
-function sum2(n: bigint): bigint {
+function sum2(n: bigint) {
   function recur(n: bigint, acc: bigint): bigint | Function {
       if (n == 0n) {
           return acc;
@@ -72,17 +72,34 @@ function sum2(n: bigint): bigint {
           return recur.bind(null, n-1n, n+acc);
       }
   }
-  return trampoline(recur.bind(null, n, 1n));
+  return trampoline<bigint>(recur.bind(null, n, 1n));
 }
 
 
-function trampoline(f: Function){
+function trampoline<T>(f: T | Function){
   while(f && f instanceof Function){
     f = f()
   }
   return f
 }
 
-console.log(sum2(5000000n));
+//console.log(sum2(5000000n));
 
+function Fibonacci2(n: bigint) {
+  function recur(cur: bigint, nm1: bigint, nm2: bigint): bigint | Function
+  {
+    if(n === 0n) return nm1;
+    if(n === 1n) return nm2;
+    if(cur === n-2n) return nm1 + nm2
+    return recur.bind(null, cur + 1n, nm2, nm1 + nm2)
+  }
+ 
+  return trampoline(recur.bind(null,0n, 0n, 1n));
+}
 
+const arr = Array(10)
+
+for(const val of arr){
+  console.log(val);
+  
+}
