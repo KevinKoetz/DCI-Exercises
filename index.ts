@@ -152,6 +152,8 @@ const createStudent = after<Omit<Student, "id">, Student, number>(
   }
 );
 
+
+
 /*
 
 create removeClass function which takes ID and remove class by ID
@@ -283,3 +285,7 @@ console.log(renderSchoolTemplate(school))
 removeStudent(0)
 
 console.log(renderSchoolTemplate(school))
+
+removeClass(1)
+
+console.log(renderSchoolTemplate(school));
