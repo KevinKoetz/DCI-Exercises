@@ -10,7 +10,7 @@ interface DogInfo {
   traits: string[];
 }
 
-function Dogs({ dogInfos: dogInfos }: { dogInfos: DogInfo[] }) {
+function Dogs({ dogInfos }: { dogInfos: DogInfo[] }) {
   const { name } = useParams();
 
   const currentInfo = dogInfos.find(
