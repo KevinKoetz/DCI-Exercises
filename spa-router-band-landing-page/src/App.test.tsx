@@ -17,7 +17,8 @@ describe("App", () => {
   })
 
   test("renders image of Dave Walker when vocals link is clicked", async () => {
-    const vocals = screen.getByText("vocals")
+    render(<App />);
+    const vocals = screen.getByText(/vocals/i)
     const user = userEvent.setup()
     await user.click(vocals)
     const img = screen.getByAltText(/Dave Walker/i)
@@ -31,6 +32,7 @@ describe("App", () => {
   })
 
   test("renders image of Tony Iommi when guitar link is clicked", async () => {
+    render(<App />);
     const vocals = screen.getByText(/guitar/i)
     const user = userEvent.setup()
     await user.click(vocals)
@@ -45,6 +47,7 @@ describe("App", () => {
   })
 
   test("renders image of Geezer Butler when bass link is clicked", async () => {
+    render(<App />);
     const vocals = screen.getByText(/bass/i)
     const user = userEvent.setup()
     await user.click(vocals)
@@ -59,6 +62,7 @@ describe("App", () => {
   })
   
   test("renders image of Bill Ward when drums link is clicked", async () => {
+    render(<App />);
     const vocals = screen.getByText(/drums/i)
     const user = userEvent.setup()
     await user.click(vocals)
