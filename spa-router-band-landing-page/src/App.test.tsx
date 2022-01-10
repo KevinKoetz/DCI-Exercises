@@ -6,13 +6,13 @@ import App from './App';
 describe("App", () => {
   test('renders band name', () => {
     render(<App />);
-    const bandName = screen.getByText("Black Sabbath", {exact: false});
+    const bandName = screen.getByText(/Black Sabbath/i);
     expect(bandName).toBeInTheDocument();
   });
 
   test("renders Vocals link", () => {
     render(<App />);
-    const vocals = screen.getByText("Vocals", {exact: false})
+    const vocals = screen.getByText(/Vocals/i)
     expect(vocals).toBeInTheDocument();
   })
 
@@ -20,59 +20,57 @@ describe("App", () => {
     const vocals = screen.getByText("vocals")
     const user = userEvent.setup()
     await user.click(vocals)
-    const img = screen.getByAltText("Dave Walker", {exact: false})
+    const img = screen.getByAltText(/Dave Walker/i)
     expect(img).toBeInTheDocument()
   })
 
   test("renders Guitar link", () => {
     render(<App />);
-    const vocals = screen.getByText("Guitar", {exact: false})
+    const vocals = screen.getByText(/Guitar/i)
     expect(vocals).toBeInTheDocument();
   })
 
   test("renders image of Tony Iommi when guitar link is clicked", async () => {
-    const vocals = screen.getByText("guitar")
+    const vocals = screen.getByText(/guitar/i)
     const user = userEvent.setup()
     await user.click(vocals)
-    const img = screen.getByAltText("Tony Iommi", {exact: false})
+    const img = screen.getByAltText(/Tony Iommi/i)
     expect(img).toBeInTheDocument()
   })
 
   test("renders Bass link", () => {
     render(<App />);
-    const vocals = screen.getByText("Bass", {exact: false})
+    const vocals = screen.getByText(/Bass/i)
     expect(vocals).toBeInTheDocument();
   })
 
   test("renders image of Geezer Butler when bass link is clicked", async () => {
-    const vocals = screen.getByText("bass")
+    const vocals = screen.getByText(/bass/i)
     const user = userEvent.setup()
     await user.click(vocals)
-    const img = screen.getByAltText("Geezer Butler", {exact: false})
+    const img = screen.getByAltText(/Geezer Butler/i)
     expect(img).toBeInTheDocument()
   })
 
   test("renders Drums link", () => {
     render(<App />);
-    const vocals = screen.getByText("Drums", {exact: false})
+    const vocals = screen.getByText(/Drums/i)
     expect(vocals).toBeInTheDocument();
   })
   
   test("renders image of Bill Ward when drums link is clicked", async () => {
-    const vocals = screen.getByText("drums")
+    const vocals = screen.getByText(/drums/i)
     const user = userEvent.setup()
     await user.click(vocals)
-    const img = screen.getByAltText("Bill Ward", {exact: false})
+    const img = screen.getByAltText(/Bill Ward/i)
     expect(img).toBeInTheDocument()
   })
 
   test("renders Band Image", () => {
     render(<App />);
-    const img = screen.getByRole("img");
+    const img = screen.getByAltText(/Black Sabbath/i)
     expect(img).toBeInTheDocument()
-    expect(img).toHaveAttribute("alt", "Black Sabbath")
   })
-
   
 })
 
@@ -80,7 +78,7 @@ describe("App", () => {
 describe("Vocals link", () => {
   test('navigates to /vocals when clicked', async () => {
     render(<App />);
-    const vocals = screen.getByText("vocals")
+    const vocals = screen.getByText(/vocals/i)
     const user = userEvent.setup()
     await user.click(vocals)
     expect(window.location.pathname).toBe<string>("/vocals")
@@ -97,7 +95,7 @@ describe("Vocals link", () => {
 describe("Guitar link", () => {
   test('navigates to /guitar when clicked', async () => {
     render(<App />);
-    const guitar = screen.getByText("guitar")
+    const guitar = screen.getByText(/guitar/i)
     const user = userEvent.setup()
     await user.click(guitar)
     expect(window.location.pathname).toBe<string>("/guitar")
@@ -114,7 +112,7 @@ describe("Guitar link", () => {
 describe("Bass link", () => {
   test('navigates to /bass when clicked', async () => {
     render(<App />);
-    const guitar = screen.getByText("bass")
+    const guitar = screen.getByText(/bass/i)
     const user = userEvent.setup()
     await user.click(guitar)
     expect(window.location.pathname).toBe<string>("/bass")
@@ -131,7 +129,7 @@ describe("Bass link", () => {
 describe("Drums link", () => {
   test('navigates to /drums when clicked', async () => {
     render(<App />);
-    const guitar = screen.getByText("drums")
+    const guitar = screen.getByText(/drums/i)
     const user = userEvent.setup()
     await user.click(guitar)
     expect(window.location.pathname).toBe<string>("/drums")
