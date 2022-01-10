@@ -1,0 +1,6 @@
+{
+    "name": "exercises",
+    "workspaces": [
+      "spa-router-band-landing-page"
+    ]
+  }
