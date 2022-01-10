@@ -1,0 +1,195 @@
+.colorCard {
+  display: none;
+  position: relative;
+  width: 15em;
+  height: 20em;
+  border: 1px solid grey;
+  margin: 1em;
+  border-radius: 0.5em;
+}
+.colorCard::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: min-content;
+  padding: 0.5em;
+  background-color: white;
+  border-radius: 0 0 0.5em 0.5em;
+}
+.colorCard .gradients {
+  border-radius: 0.5em;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  background-color: inherit;
+  transition: all 250ms;
+}
+.colorCard .gradients::before {
+  content: "";
+  width: 33%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+}
+.colorCard .gradients::after {
+  content: "";
+  width: 33%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+}
+@media screen and (min-width: 1024px) {
+  .colorCard .gradients {
+    inset: unset;
+    transition: unset;
+    opacity: 1;
+    top: calc(100% + 2em);
+    width: 100%;
+    height: 100%;
+  }
+}
+.colorCard:hover .gradients {
+  opacity: 1;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+    row-gap: 22em;
+  }
+}
+
+.colorCard:nth-child(1) {
+  display: block;
+  background-color: yellow;
+}
+.colorCard:nth-child(1)::after {
+  content: "Color: yellow\aHex-Code: #FFFF00";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(1) .gradients::before {
+  background-color: #cccc00;
+}
+.colorCard:nth-child(1) .gradients::after {
+  background-color: #ffff33;
+}
+
+.colorCard:nth-child(2) {
+  display: block;
+  background-color: red;
+}
+.colorCard:nth-child(2)::after {
+  content: "Color: red\aHex-Code: #FF0000";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(2) .gradients::before {
+  background-color: #cc0000;
+}
+.colorCard:nth-child(2) .gradients::after {
+  background-color: #ff3333;
+}
+
+.colorCard:nth-child(3) {
+  display: block;
+  background-color: blue;
+}
+.colorCard:nth-child(3)::after {
+  content: "Color: blue\aHex-Code: #0000FF";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(3) .gradients::before {
+  background-color: #0000cc;
+}
+.colorCard:nth-child(3) .gradients::after {
+  background-color: #3333ff;
+}
+
+.colorCard:nth-child(4) {
+  display: block;
+  background-color: purple;
+}
+.colorCard:nth-child(4)::after {
+  content: "Color: purple\aHex-Code: #800080";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(4) .gradients::before {
+  background-color: #4d004d;
+}
+.colorCard:nth-child(4) .gradients::after {
+  background-color: #b300b3;
+}
+
+.colorCard:nth-child(5) {
+  display: block;
+  background-color: lightgreen;
+}
+.colorCard:nth-child(5)::after {
+  content: "Color: lightgreen\aHex-Code: #90EE90";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(5) .gradients::before {
+  background-color: #64e764;
+}
+.colorCard:nth-child(5) .gradients::after {
+  background-color: #bcf5bc;
+}
+
+.colorCard:nth-child(6) {
+  display: block;
+  background-color: lightpink;
+}
+.colorCard:nth-child(6)::after {
+  content: "Color: lightpink\aHex-Code: #FFB6C1";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(6) .gradients::before {
+  background-color: #ff8396;
+}
+.colorCard:nth-child(6) .gradients::after {
+  background-color: #ffe9ec;
+}
+
+.colorCard:nth-child(7) {
+  display: block;
+  background-color: crimson;
+}
+.colorCard:nth-child(7)::after {
+  content: "Color: crimson\aHex-Code: #DC143C";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(7) .gradients::before {
+  background-color: #ad102f;
+}
+.colorCard:nth-child(7) .gradients::after {
+  background-color: #ed365b;
+}
+
+.colorCard:nth-child(8) {
+  display: block;
+  background-color: plum;
+}
+.colorCard:nth-child(8)::after {
+  content: "Color: plum\aHex-Code: #DDA0DD";
+  white-space: pre-wrap;
+}
+.colorCard:nth-child(8) .gradients::before {
+  background-color: #d07ad0;
+}
+.colorCard:nth-child(8) .gradients::after {
+  background-color: #eac6ea;
+}
+
+/*# sourceMappingURL=main.css.map */

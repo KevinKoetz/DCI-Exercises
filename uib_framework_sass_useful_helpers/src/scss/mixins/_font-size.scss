@@ -1,0 +1,17 @@
+@use "sass:map";
+@import "../abstract/variables";
+@mixin font-size($size) {
+  @if map.get($font-sizes, $size) != null {
+    font-size: map.get($font-sizes, $size);
+  } @else {
+    @error "Make sure that #{$size} is included in $font-sizes";
+  }
+}
+
+@function font-size($size) {
+    @if map.get($font-sizes, $size) != null {
+      @return map.get($font-sizes, $size);
+    } @else {
+      @error "Make sure that #{$size} is included in $font-sizes";
+    }
+  }

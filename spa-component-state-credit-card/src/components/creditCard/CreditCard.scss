@@ -1,0 +1,45 @@
+.CreditCard {
+  width: 30rem;
+  height: 16rem;
+  background-color: hsl(219, 100%, 50%);
+  border-radius: 0.5rem;
+  color: white;
+  position: relative;
+  font-family: monospace;
+
+  .bankName {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .cardNumber {
+    position: absolute;
+    left: 2rem;
+    top: 6rem;
+    font-size: 2rem;
+  }
+
+  .cardHolder {
+    position: absolute;
+    left: 2rem;
+    top: 12rem;
+    font-size: 2rem;
+  }
+
+  .expirationDate {
+    position: absolute;
+    left: 10rem;
+    top: 9rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    .validThru {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.7em;
+    }
+  }
+}

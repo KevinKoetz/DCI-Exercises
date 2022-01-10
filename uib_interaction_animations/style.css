@@ -1,0 +1,52 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+  padding: 0.5em;
+  font-family: sans-serif;
+  font-weight: 700;
+  background-color: aquamarine;
+  animation-duration: 1s;
+  animation-fill-mode: backwards;
+}
+
+li:hover {
+    animation-name: hoverIn;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+.afterHover {
+    animation-name: hoverOut;
+}
+
+@keyframes hoverIn {
+  from {
+    background-color: aquamarine;
+  }
+  to {
+    background-color: red;
+    box-shadow: 0.1em 0.1em 0.3em darkgray;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes hoverOut {
+  from {
+    background-color: red;
+    box-shadow: 0.1em 0.1em 0.3em darkgray;
+    transform: scale(1.05);
+  }
+  to {
+    background-color: aquamarine;
+  }
+}

@@ -1,0 +1,218 @@
+body {
+  height: 100vh;
+  display: flex;
+}
+
+.page-center {
+  margin: auto;
+}
+
+.processing-container {
+  overflow: hidden;
+  width: 10em;
+  height: 15em;
+  position: relative;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  font-family: monospace;
+}
+
+.processing-item {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  height: 80%;
+  width: 80%;
+  
+}
+
+.processing-container * {
+  animation-duration: inherit;
+  animation-iteration-count: inherit;
+}
+
+.processing-label {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: min-content;
+  margin: auto;
+}
+
+.processing-label:first-of-type {
+  animation-name: processing;
+  
+}
+
+.processing-label:last-of-type {
+  animation-name: done1;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+img[src="images/download.png"] {
+  transform: translateX(150%);
+  animation-name: download;
+}
+
+img[src="images/file.png"] {
+  transform: translateX(150%);
+  animation-name: file;
+}
+
+img[src="images/file-success.png"] {
+  transform: translateY(-150%);
+  animation-name: file-success;
+}
+
+@keyframes download {
+  0% {
+    transform: translateX(150%);
+  }
+  10% {
+    transform: translateX(0%);
+  }
+  15% {
+    transform: translateX(0%) scale(0.9);
+  }
+  20% {
+    transform: translateX(-150%) scale(0.9);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+
+@keyframes file {
+    0% {
+        transform: translateX(150%);
+    }
+    20% {
+        transform: translateX(150%);
+    }
+    30% {
+        transform: translateX(0%);
+    }
+
+    35% {
+        transform: translateX(0%) scale(0.9);
+    }
+    40% {
+        transform: translateX(-150%) scale(0.9);
+    }
+
+    40.01% {
+        transform: translateX(150%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+
+    55% {
+        transform: translateX(0%) scale(0.9);
+    }
+
+    60% {
+        transform: translateX(-150%) scale(0.9);
+    }
+
+    60.01% {
+        transform: translateX(150%);
+    }
+    70% {
+        transform: translateX(0%);
+    }
+    75% {
+        transform: translateX(0%) scale(0.9);
+    }
+    80% {
+        transform: translateX(-150%) scale(0.9);
+    }
+
+    100% {
+        transform: translateX(-150%);
+    }
+}
+
+@keyframes file-success {
+    0% {
+        transform: translateY(-150%);
+    }
+    80% {
+        transform: translateY(-150%);
+    }
+
+    85% {
+        transform: translateY(0%);
+    }
+
+    90% {
+        transform: translateY(-2%);
+    }
+
+    95% {
+        transform: translateY(2%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes processing {
+    0% {opacity: 0;
+
+    }
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes done1 {
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,42 @@
+.LuckyNumbers {
+  --clr-primary: hsl(197, 40%, 75%);
+  --clr-secondary: hsl(197, 40%, 70%);
+  text-align: center;
+}
+
+.LuckyNumbers > ol{
+  list-style: none;
+  display: flex;
+  gap: 1em;
+}
+
+.LuckyNumbers > ol > li{
+  border: 2px solid var(--clr-secondary);
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  display: grid;
+  place-content: center;
+}
+
+.LuckyNumbers > ol > li:last-child{
+  background-color: var(--clr-primary);
+}
+
+.LuckyNumbers > div > input {
+  border: 2px solid var(--clr-secondary);
+  padding: 0.5em;
+  font-weight: 700;
+  margin: 0 0.5em;
+  border-radius: 4px;
+}
+
+.LuckyNumbers > div > input.reset {
+  background-color: transparent;
+  color: var(--clr-primary);
+}
+
+.LuckyNumbers > div > input.showLuckyNumbers {
+  background-color: var(--clr-primary);
+  color: white;
+}

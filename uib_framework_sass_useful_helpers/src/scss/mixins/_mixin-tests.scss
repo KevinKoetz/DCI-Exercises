@@ -1,0 +1,100 @@
+@use "sass:math";
+@use "sass:list";
+@import "../abstract/variables";
+@import "./mixins";
+
+ul {
+  @include reset-list;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div {
+    $size: 15em;
+    height: $size;
+    width: $size;
+    border: 1px solid black;
+    > div {
+        height: math.div($size, 2);
+        width: math.div($size, 2);
+    }
+}
+
+.center {
+  
+  &--flex {
+      @include center(flex);
+  }
+
+  &--grid {
+    @include center(grid);
+}
+
+&--inset {
+    @include center(inset);
+}
+
+}
+
+.hide{
+
+    &{
+        @include hide;
+    }
+
+    &--display{
+        @include hide(display);
+    }
+
+    &--visibility{
+        @include hide(visibility);
+    }
+
+    &--opacity{
+        @include hide(opacity);
+    }
+}
+
+
+.triangle {
+
+    color: white;
+
+    &--up {
+        @include triangle(up);
+    }
+
+    &--up.red {
+        @include triangle(up, red);
+    }
+
+    &--right {
+        @include triangle(right);
+    }
+
+    &--down {
+        @include triangle(down);
+    }
+
+    &--left {
+        @include triangle(left);
+    }
+
+    
+}
+
+.fade-in {
+    color: white;
+    @include fade-in(2s);
+    font-size: font-size(xs)
+}
+
+
+@each $name, $size in $font-sizes {
+    .font-#{$name}{
+        @include font-size($name);
+    }
+}

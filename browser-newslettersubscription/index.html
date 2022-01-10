@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="newsletter-popup.js" defer></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+
+    <template id="newsletter-popup">
+      <style>
+        :host {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: hsla(0, 0%, 50%, 0.5);
+          display: grid;
+          place-content: center;
+        }
+
+        form {
+          background-color: orange;
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        #close {
+          align-self: flex-end;
+        }
+        #submit {
+          margin-top: 0.5rem;
+        }
+      </style>
+      <form id="form">
+        <input type="button" value="x" id="close" />
+        <p>To stay up-to-date with important releases, Subscribe!</p>
+        <input
+          required
+          type="email"
+          name="email"
+          id="email"
+          placeholder="youremail@example.com"
+        />
+        <input type="submit" value="Submit" id="submit" />
+      </form>
+    </template>
+  </body>
+</html>

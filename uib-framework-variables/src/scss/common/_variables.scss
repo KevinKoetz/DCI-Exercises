@@ -1,0 +1,21 @@
+$xs: 0;
+$md: 768px;
+$lg: 1024px;
+
+$grid-breakpoints: (
+  xs: $xs,
+  md: $md,
+  lg: $lg
+);
+
+$container-max-widths: (
+  md: 720px,
+  lg: 1440px
+);
+
+$theme-colors: (
+  "primary":    #e0ddb2,
+  "borders":  #dad6ab,
+  "secondary": #016690,
+  "light": #ffffff
+);

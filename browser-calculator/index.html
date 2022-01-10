@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="index.js" defer></script>
+    <title>Calculator</title>
+  </head>
+  <body>
+    <calculator-line operator="+">
+    </calculator-line>
+    <calculator-line operator="-">
+    </calculator-line>
+    <calculator-line operator="*">
+    </calculator-line>
+    <calculator-line operator="/">
+    </calculator-line>
+    <calculator-line operator="%">
+    </calculator-line>
+    <template id="simpleCalculatorLine">
+      <div class="calculatorLine">
+        <input type="number" name="a" id="a" /><span
+          name="operator"
+          id="operator"
+        ></span
+        ><input type="string" name="b" id="b" />=<input
+          type="number"
+          name="result"
+          id="result"
+          disabled
+        />
+      </div>
+    </template>
+  </body>
+</html>

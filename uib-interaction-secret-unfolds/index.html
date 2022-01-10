@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      body > div {
+        width: 400px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      div > div {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        transition: all 1s ease-in-out;
+      }
+
+      div > div:nth-of-type(1) {
+        top: 0;
+        left: 0;
+        background-color: blue;
+
+      }
+      div > div:nth-of-type(2) {
+        top: 0;
+        right: 0;
+        background-color: black;
+        
+
+      }
+      div > div:nth-of-type(3) {
+        bottom: 0;
+        left: 0;
+        background-color: yellow;
+
+      }
+      div > div:nth-of-type(4) {
+        bottom: 0;
+        right: 0;
+        background-color: brown;
+
+      }
+
+
+      body > div:hover > div:nth-of-type(1) {
+        transform: rotate(90deg);
+        left:-50%;
+      }
+
+      body > div:hover > div:nth-of-type(2) {
+        transform: rotate(-90deg);
+        right:-50%;
+      }
+
+      body > div:hover > div:nth-of-type(3) {
+        transform: rotate(-90deg);
+        left:-50%;
+        
+      }
+
+      body > div:hover > div:nth-of-type(4) {
+        transform: rotate(90deg);
+        right:-50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Hi!</h1>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </body>
+</html>

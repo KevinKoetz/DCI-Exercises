@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js" defer></script>
+    <style>
+        #colorCards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(0, 20ch));
+            grid-auto-rows: 10em;
+            gap: 1rem;
+        }
+        .colorCard {
+            position:relative;
+            padding: 0.5em;
+            isolation: isolate;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+        .colorValue {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-content: center;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Color Generator</h1>
+    <section id="colorCards">
+
+    </section>
+    <form>
+        <input type="number" name="" id="colorCardAmount">
+        <input type="submit" value="+ Add colors">
+    </form>
+    <template id="colorCardTemplate">
+        <article class="colorCard">
+            <p class="colorValue"></p>
+            <input type="button" value="x" class="removeBtn">
+        </article>
+    </template>
+    
+</body>
+</html>

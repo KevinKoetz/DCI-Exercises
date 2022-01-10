@@ -1,0 +1,26 @@
+.envelope {
+    border: 1px solid black;
+    width: 60rem;
+    height:30rem;
+    position: relative;
+    
+    .stamp {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .to {
+        position: absolute;
+        margin: auto;
+        width: fit-content;
+        height: fit-content;
+        inset: 0;
+    }
+
+    .from {
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+    }
+}

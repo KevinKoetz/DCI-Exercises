@@ -1,0 +1,25 @@
+$sizes: (
+  s: 30px,
+  m: 60px,
+  l: 120px,
+  xl: 200px,
+);
+
+$types: (
+    square: 0,
+    rounded: 0.5rem,
+    circle: 50%
+);
+
+@each $size, $width in $sizes {
+  img.#{$size}.Avatar {
+    width: $width;
+    aspect-ratio: 1/1;
+  }
+}
+
+@each $type, $radius in $types {
+    img.#{$type}.Avatar {
+        border-radius: $radius;
+      }
+}
