@@ -6,7 +6,7 @@ import App from './App';
 describe("App", () => {
   test('renders band name', () => {
     render(<App />);
-    const bandName = screen.getByText("Black Sabath", {exact: false});
+    const bandName = screen.getByText("Black Sabbath", {exact: false});
     expect(bandName).toBeInTheDocument();
   });
 
