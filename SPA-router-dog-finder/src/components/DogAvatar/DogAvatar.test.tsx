@@ -2,18 +2,38 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DogAvatar from './DogAvatar';
 
-beforeEach(()=>{
-    render(<DogAvatar name="Dog" imageUrl='https://picsum.photos/id/237/200/200'/>)
+const dogName = "Dog";
+const imageUrl = 'https://picsum.photos/id/237/200/200';
+
+describe("Image", ()=>{
+    
+
+    test("is rendered.", () => {
+        render(<DogAvatar name={dogName} imageUrl={imageUrl}/>)
+        const img = screen.getByRole("img")
+        expect(img).toBeInTheDocument()
+    })
+
+    test("contains alt Text.", () => {
+        render(<DogAvatar name={dogName} imageUrl={imageUrl}/>)
+        const img = screen.getByRole<HTMLImageElement>("img")
+        expect(img).toHaveAttribute("alt")
+    })
+
+    test("has correct src.", () => {
+        render(<DogAvatar name={dogName} imageUrl={imageUrl}/>)
+        const img = screen.getByRole<HTMLImageElement>("img")
+        expect(img).toHaveAttribute("src", imageUrl)
+    })
 })
 
-test("Renders Image", () => {
-    const img = screen.getByRole("img")
-    expect(img).toBeInTheDocument()
+test("displays Dog name.", () => {
+    render(<DogAvatar name={dogName} imageUrl={imageUrl}/>)
+    const nameElement = screen.getByText("Dog", {exact: true})
+    expect(nameElement).toBeInTheDocument()
 })
 
-test("Image contains alt Text", () => {
-    const img = screen.getByRole<HTMLImageElement>("img")
-    expect(img.alt).toBeTruthy()
-})
+
+
 
 
