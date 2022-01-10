@@ -1,2 +1,1 @@
-# Repository for DCI Exercise Solutions.
-Solutions can be found in the branches.
+# Repository for all Exercises done during the DCI Full-Stack Web Development Course
