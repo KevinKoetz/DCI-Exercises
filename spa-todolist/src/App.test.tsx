@@ -95,7 +95,7 @@ describe("App should", () => {
 
   test("render tasks from localStorage if some are there.", () => {
     const taskText = "Sample Task Text"
-    localStorage.setItem("tasks", JSON.stringify([{text: taskText, done: false}]))
+    localStorage.setItem("tasks", JSON.stringify([{text: taskText, done: false, id: 1}]))
     render(<App/>)
     const task = screen.getByText(taskText)
     expect(task).toBeInTheDocument()
