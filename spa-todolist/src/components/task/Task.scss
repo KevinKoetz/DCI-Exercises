@@ -1,1 +1,5 @@
-.Task {}
+.Task {
+    .done {
+        text-decoration: line-through;
+    }
+}

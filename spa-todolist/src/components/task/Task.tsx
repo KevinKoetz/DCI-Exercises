@@ -10,10 +10,15 @@ function Task({
   onDone,
 }: ITask & { onDelete: (id: number) => void; onDone: (id: number) => void }) {
   return (
-    <li className="Task">
-      <span className={done ? "taskText done" : "taskText"}>{text}</span>
-      <input type="button" value="Delete Task" onClick={() => onDelete(id)}/>
-      <input type="button" value="Set to Done" onClick={() => onDone(id)}/>
+    <li className="Task" aria-label="task">
+      <span
+        className={done ? "taskText done" : "taskText"}
+        style={done ? { textDecoration: "line-through" } : undefined}
+      >
+        {text}
+      </span>
+      <input type="button" value="Delete Task" onClick={() => onDelete(id)} />
+      <input type="button" value="Set to Done" onClick={() => onDone(id)} />
     </li>
   );
 }
