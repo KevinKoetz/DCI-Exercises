@@ -1,8 +1,7 @@
 import React from 'react';
-import { cleanup, findByRole, findByText, render, screen} from '@testing-library/react';
+import { cleanup, findByRole, render, screen} from '@testing-library/react';
 import App from './App';
 import userEvent from "@testing-library/user-event";
-import { notDeepEqual } from 'assert';
 
 
 beforeEach(()=> {
