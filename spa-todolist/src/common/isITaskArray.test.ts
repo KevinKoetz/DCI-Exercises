@@ -1,5 +1,4 @@
 import isITaskArray from "./isITaskArray";
-import {ITask} from "./types";
 
 
 describe("isITaskArray should", () => {
@@ -18,6 +17,7 @@ describe("isITaskArray should", () => {
         expect(isITaskArray([{text: "Hello", done: true},{}])).toStrictEqual(false)
         expect(isITaskArray([{text: "Bar"}])).toStrictEqual(false)
         expect(isITaskArray([{done: false}])).toStrictEqual(false)
+        expect(isITaskArray([{id: false}])).toStrictEqual(false)
     })
 
     test("return true if called with an empty Array", () => {
@@ -25,7 +25,7 @@ describe("isITaskArray should", () => {
     })
 
     test("return true if called with an Array containing only Objects implementing ITask", () => {
-        expect(isITaskArray([{text: "Hello", done: true}])).toStrictEqual(true)
-        expect(isITaskArray([{text: "Hello", done: true},{text: "Yep", done: false}])).toStrictEqual(true)
+        expect(isITaskArray([{text: "Hello", done: true, id:1}])).toStrictEqual(true)
+        expect(isITaskArray([{text: "Hello", done: true, id:1},{text: "Yep", done: false, id: 2}])).toStrictEqual(true)
     })
 })
