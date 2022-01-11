@@ -13,7 +13,7 @@ function TaskList({
   onTaskDone: (id: number) => void;
 }) {
   return (
-    <ul className="TaskList">
+    <ul className="TaskList" aria-label="tasklist">
       {tasks.map((task) => (
         <Task
           key={task.id}
