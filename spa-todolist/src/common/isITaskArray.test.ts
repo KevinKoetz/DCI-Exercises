@@ -18,6 +18,7 @@ describe("isITaskArray should", () => {
         expect(isITaskArray([{text: "Bar"}])).toStrictEqual(false)
         expect(isITaskArray([{done: false}])).toStrictEqual(false)
         expect(isITaskArray([{id: false}])).toStrictEqual(false)
+        expect(isITaskArray([{text:"Test",done:false,id:null},{text:"Test2",done:false,id:null}])).toStrictEqual(false)
     })
 
     test("return true if called with an empty Array", () => {
