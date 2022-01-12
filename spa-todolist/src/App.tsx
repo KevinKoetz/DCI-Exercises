@@ -39,6 +39,7 @@ function App() {
     e.preventDefault();
     if(!taskText) return;
     setTasks((tasks) => [...tasks, {text: taskText, done: false, id: generateId()}])
+    setTaskText("");
   }
 
   return (
