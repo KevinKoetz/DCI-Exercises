@@ -85,7 +85,7 @@ describe("Task should", () => {
     expect(mockHandleDelete.mock.calls[0][0]).toBe(id)
   });
 
-  test("render a Set to Done button", () => {
+  test("render a Set to Done button, if done is false", () => {
     const taskText = "AbCDeF G";
     render(
       <Task
@@ -115,6 +115,43 @@ describe("Task should", () => {
     );
     const doneButton = screen.getByRole("button", {name: /set to done/i})
     await userEvent.click(doneButton)
+
+    expect(mockHandleDone.mock.calls.length).toBe(1)
+    expect(mockHandleDone.mock.calls[0][0]).toBe(id)
+  });
+
+
+  test("render a Set undone button, if done is true", () => {
+    const taskText = "AbCDeF G";
+    render(
+      <Task
+        text={taskText}
+        done={true}
+        id={1}
+        onDelete={() => {}}
+        onDone={() => {}}
+      />
+    );
+    const undoneButton = screen.getByRole("button", {name: /undone/i})
+    expect(undoneButton).toBeInTheDocument()
+  });
+
+  test("call the onUndone function with the task id when undone button is pressed", async () => {
+    const mockHandleDone = jest.fn((id: number) => id)
+    const taskText = "AbCDeF G";
+    const id = 1;
+    render(
+      <Task
+        text={taskText}
+        done={false}
+        id={id}
+        onDelete={() => {}}
+        onDone={()=> {}}
+        onUndone={mockHandleDone}
+      />
+    );
+    const undoneButton = screen.getByRole("button", {name: /undone/i})
+    await userEvent.click(undoneButton)
 
     expect(mockHandleDone.mock.calls.length).toBe(1)
     expect(mockHandleDone.mock.calls[0][0]).toBe(id)
