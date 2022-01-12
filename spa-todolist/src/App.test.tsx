@@ -1,8 +1,9 @@
 import React from "react";
-import { cleanup, findByRole, render, screen } from "@testing-library/react";
+import { cleanup, findByRole, findByText, render, screen } from "@testing-library/react";
 import App from "./App";
 import userEvent from "@testing-library/user-event";
 import isITaskArray from "./common/isITaskArray";
+import { ITask } from "./common/types";
 
 beforeEach(() => {
   cleanup();
@@ -41,6 +42,19 @@ describe("App should", () => {
     const task = await screen.findByText(taskText);
     expect(task).toBeInTheDocument();
   });
+
+  test("clear the text input when the task was added.", async () => {
+    render(<App />);
+    const taskText = "Sample Task Text";
+    const input = screen.getByLabelText<HTMLInputElement>(/define your task/i);
+    const addTask = screen.getByRole("button", { name: /add a task/i });
+
+    const user = userEvent.setup();
+    await user.type(input, taskText);
+    await user.click(addTask);
+
+    expect(input.value).toBe("")
+  })
 
   test("render a new task with the Text from the task text input, when the enter button is pressed while in the task text input.", async () => {
     render(<App />);
@@ -210,4 +224,27 @@ describe("A Task should", () => {
 
     expect(text).toHaveStyle("text-decoration: line-through;");
   });
+
+  test("render set undone button if Task is done", async () => {
+    const tasks: ITask[] = [{text: "Sample Text", done: true, id: 1}]
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+    render(<App />);
+
+    const undone = screen.getByRole("button", {name: /undone/i})
+
+    expect(undone).toBeInTheDocument()
+  });
+
+  test("render the text normal if set undone button is clicked", async () => {
+    const tasks: ITask[] = [{text: "Sample Text", done: true, id: 1}]
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+    render(<App />);
+
+    const undone = screen.getByRole("button", {name: /undone/i})
+    await userEvent.click(undone)
+    const taskText = await screen.findByText(tasks[0].text)
+
+    expect(taskText).not.toHaveStyle("text-decoration: line-through;");
+  });
+
 });
