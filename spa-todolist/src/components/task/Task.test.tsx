@@ -151,7 +151,7 @@ describe("Task should", () => {
     render(
       <Task
         text={taskText}
-        done={false}
+        done={true}
         id={id}
         onDelete={() => {}}
         onDone={()=> {}}
