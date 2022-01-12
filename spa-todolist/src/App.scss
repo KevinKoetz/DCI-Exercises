@@ -1,3 +1,39 @@
 .App {
+    display: grid;
+    grid-template-areas: "taskinput" "tasklist";
+    form {
+        grid-area: taskinput;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        background-color: var(--clr-light);
+        font-size: 1.1em;
+
+        * {
+            padding: 0.5em 1em;
+        }
+
+        input[type="text"]{
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        input[type="text"]:focus{
+            outline: none;
+            box-shadow: 0px 0px 5px 1px var(--clr-primary);
+        }
+
+        input[type="submit"]{
+            background-color: var(--clr-primary);
+            color:white;
+            border: none;
+        }
+
+    }
+    .tasklist {
+        grid-area: tasklist;
+        justify-self: center;
+    }
 }
 

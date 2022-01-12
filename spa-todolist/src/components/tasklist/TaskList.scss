@@ -1,1 +1,11 @@
-.TaskList {}
+.TaskList {
+    list-style: none;
+    width: 100%;
+    max-width: 150ch;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em
+}
