@@ -4,6 +4,7 @@ import "./Task.scss";
 import Task from "./Task";
 import userEvent from "@testing-library/user-event";
 
+
 describe("Task should", () => {
   test("render the Task Text", () => {
     const taskText = "AbCDeF G";
@@ -14,6 +15,7 @@ describe("Task should", () => {
         id={1}
         onDelete={() => {}}
         onDone={() => {}}
+        onUndone={() => {}}
       />
     );
     const renderedText = screen.getByText(taskText)
@@ -29,6 +31,7 @@ describe("Task should", () => {
         id={1}
         onDelete={() => {}}
         onDone={() => {}}
+        onUndone={() => {}}
       />
     );
     const renderedText = screen.getByText(taskText)
@@ -44,6 +47,7 @@ describe("Task should", () => {
         id={1}
         onDelete={() => {}}
         onDone={() => {}}
+        onUndone={() => {}}
       />
     );
     const task = screen.getByRole("listitem", {name: /task/i})
@@ -59,6 +63,7 @@ describe("Task should", () => {
         id={1}
         onDelete={() => {}}
         onDone={() => {}}
+        onUndone={() => {}}
       />
     );
     const deleteButton = screen.getByRole("button", {name: /delete task/i})
@@ -76,6 +81,7 @@ describe("Task should", () => {
         id={id}
         onDelete={mockHandleDelete}
         onDone={() => {}}
+        onUndone={() => {}}
       />
     );
     const deleteButton = screen.getByRole("button", {name: /delete task/i})
@@ -94,6 +100,7 @@ describe("Task should", () => {
         id={1}
         onDelete={() => {}}
         onDone={() => {}}
+        onUndone={() => {}}
       />
     );
     const doneButton = screen.getByRole("button", {name: /set to done/i})
@@ -111,10 +118,49 @@ describe("Task should", () => {
         id={id}
         onDelete={() => {}}
         onDone={mockHandleDone}
+        onUndone={() => {}}
       />
     );
     const doneButton = screen.getByRole("button", {name: /set to done/i})
     await userEvent.click(doneButton)
+
+    expect(mockHandleDone.mock.calls.length).toBe(1)
+    expect(mockHandleDone.mock.calls[0][0]).toBe(id)
+  });
+
+
+  test("render a Set undone button, if done is true", () => {
+    const taskText = "AbCDeF G";
+    render(
+      <Task
+        text={taskText}
+        done={true}
+        id={1}
+        onDelete={() => {}}
+        onDone={() => {}}
+        onUndone={() => {}}
+      />
+    );
+    const undoneButton = screen.getByRole("button", {name: /set undone/i})
+    expect(undoneButton).toBeInTheDocument()
+  });
+
+  test("call the onUndone function with the task id when undone button is pressed", async () => {
+    const mockHandleDone = jest.fn((id: number) => id)
+    const taskText = "AbCDeF G";
+    const id = 1;
+    render(
+      <Task
+        text={taskText}
+        done={true}
+        id={id}
+        onDelete={() => {}}
+        onDone={()=> {}}
+        onUndone={mockHandleDone}
+      />
+    );
+    const undoneButton = screen.getByRole("button", {name: /set undone/i})
+    await userEvent.click(undoneButton)
 
     expect(mockHandleDone.mock.calls.length).toBe(1)
     expect(mockHandleDone.mock.calls[0][0]).toBe(id)
