@@ -138,9 +138,10 @@ describe("Task should", () => {
         id={1}
         onDelete={() => {}}
         onDone={() => {}}
+        onUndone={() => {}}
       />
     );
-    const undoneButton = screen.getByRole("button", {name: /undone/i})
+    const undoneButton = screen.getByRole("button", {name: /set undone/i})
     expect(undoneButton).toBeInTheDocument()
   });
 
@@ -158,7 +159,7 @@ describe("Task should", () => {
         onUndone={mockHandleDone}
       />
     );
-    const undoneButton = screen.getByRole("button", {name: /undone/i})
+    const undoneButton = screen.getByRole("button", {name: /set undone/i})
     await userEvent.click(undoneButton)
 
     expect(mockHandleDone.mock.calls.length).toBe(1)
