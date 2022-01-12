@@ -6,11 +6,13 @@ import Task from "../task/Task";
 function TaskList({
   tasks,
   onTaskDelete,
-  onTaskDone
+  onTaskDone,
+  onTaskUndone
 }: {
   tasks: ITask[];
   onTaskDelete: (id: number) => void;
   onTaskDone: (id: number) => void;
+  onTaskUndone: (id: number) => void;
 }) {
   return (
     <ul className="TaskList" aria-label="tasklist">
@@ -22,6 +24,7 @@ function TaskList({
           done={task.done}
           onDelete={onTaskDelete}
           onDone={onTaskDone}
+          onUndone={onTaskUndone}
         />
       ))}
     </ul>
