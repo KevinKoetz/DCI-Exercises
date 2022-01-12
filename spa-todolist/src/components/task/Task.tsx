@@ -8,8 +8,12 @@ function Task({
   id,
   onDelete,
   onDone,
-  onUndone
-}: ITask & { onDelete: (id: number) => void; onDone: (id: number) => void; onUndone: (id: number) => void }) {
+  onUndone,
+}: ITask & {
+  onDelete: (id: number) => void;
+  onDone: (id: number) => void;
+  onUndone: (id: number) => void;
+}) {
   return (
     <li className="Task" aria-label="task">
       <span
@@ -18,8 +22,12 @@ function Task({
       >
         {text}
       </span>
-      <input type="button" value="Delete Task" onClick={() => onDelete(id)} />
-      {done ? <input type="button" value="Set undone" onClick={() => onUndone(id)} /> : <input type="button" value="Set to Done" onClick={() => onDone(id)} /> }
+      <input type="button" className="deleteButton" value="Delete Task" onClick={() => onDelete(id)} />
+      {done ? (
+        <input type="button" className="undoneButton" value="Set undone" onClick={() => onUndone(id)} />
+      ) : (
+        <input type="button" className="doneButton" value="Set to Done" onClick={() => onDone(id)} />
+      )}
     </li>
   );
 }

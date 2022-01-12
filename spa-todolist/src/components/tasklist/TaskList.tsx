@@ -7,15 +7,17 @@ function TaskList({
   tasks,
   onTaskDelete,
   onTaskDone,
-  onTaskUndone
+  onTaskUndone,
+  className,
 }: {
   tasks: ITask[];
   onTaskDelete: (id: number) => void;
   onTaskDone: (id: number) => void;
   onTaskUndone: (id: number) => void;
+  className?: string;
 }) {
   return (
-    <ul className="TaskList" aria-label="tasklist">
+    <ul className={className ? "TaskList " + className : "TaskList"} aria-label="tasklist">
       {tasks.map((task) => (
         <Task
           key={task.id}

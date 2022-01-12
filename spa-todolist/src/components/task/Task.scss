@@ -1,5 +1,37 @@
 .Task {
+    box-sizing: border-box;
+    border: 1px solid var(--clr-light);
+    border-radius: 4px;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin: 0;
+    .taskText {
+        flex-grow: 1;
+    }
     .done {
         text-decoration: line-through;
+    }
+
+    input {
+        border: none;
+        border-radius: 4px;
+        padding: 0.5em;
+    }
+
+    input.deleteButton {
+        background-color: var(--clr-danger);
+        color: white;
+    }
+
+    input.doneButton {
+        background-color: var(--clr-success);
+        color: black;
+    }
+
+    input.undoneButton {
+        background-color: var(--clr-warning);
+        color: black;
     }
 }

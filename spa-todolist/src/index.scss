@@ -8,3 +8,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --clr-light: hsl(0, 0%, 90%);
+  --clr-primary: hsl(219, 73%, 54%);
+  --clr-danger: red;
+  --clr-warning: yellow;
+  --clr-success: green;
+}
