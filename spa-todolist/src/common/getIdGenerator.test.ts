@@ -1,6 +1,7 @@
-import generateId from "./generateId";
+import getIdGenerator from "./getIdGenerator";
 
 describe("generateId should", () => {
+    const generateId = getIdGenerator()
     test("return consecutive increasing numbers, starting from 0 each time it is called",() => {
         expect(generateId()).toBe(0)
         expect(generateId()).toBe(1)

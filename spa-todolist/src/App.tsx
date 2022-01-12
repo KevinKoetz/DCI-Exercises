@@ -3,7 +3,9 @@ import "./App.scss";
 import { ITask } from "./common/types";
 import isITaskArray from "./common/isITaskArray";
 import TaskList from "./components/tasklist/TaskList";
-import generateId from "./common/generateId";
+import getIdGenerator from "./common/getIdGenerator";
+
+const generateId = getIdGenerator();
 
 function App() {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -60,6 +62,7 @@ function App() {
         onTaskDelete={handleTaskDelete}
         onTaskDone={handleTaskDone}
         onTaskUndone={handleTaskUndone}
+        className="tasklist"
       />
     </div>
   );
