@@ -12,7 +12,12 @@ describe("Tasklist should", () => {
       { text: "Task4", done: false, id: 4 },
     ];
     render(
-      <TaskList tasks={tasks} onTaskDelete={() => {}} onTaskDone={() => {}} />
+      <TaskList
+        tasks={tasks}
+        onTaskDelete={() => {}}
+        onTaskDone={() => {}}
+        onTaskUndone={() => {}}
+      />
     );
 
     tasks.forEach((task) => {
@@ -34,6 +39,7 @@ describe("Tasklist should", () => {
         tasks={tasks}
         onTaskDelete={mockHandleTaskDelete}
         onTaskDone={() => {}}
+        onTaskUndone={() => {}}
       />
     );
 
@@ -70,6 +76,7 @@ describe("Tasklist should", () => {
         tasks={tasks}
         onTaskDelete={() => {}}
         onTaskDone={mockHandleTaskDone}
+        onTaskUndone={() => {}}
       />
     );
 
@@ -90,6 +97,43 @@ describe("Tasklist should", () => {
       expect(mockHandleTaskDone.mock.calls.length).toBe(1);
       expect(mockHandleTaskDone.mock.calls[0][0]).toBe(task.id);
       mockHandleTaskDone.mockClear();
+    }
+  });
+
+  test("call onTaskUndone with the correct id if a task is undone", async () => {
+    const tasks = [
+      { text: "Task1", done: true, id: 1 },
+      { text: "Task2", done: true, id: 2 },
+      { text: "Task3", done: true, id: 3 },
+      { text: "Task4", done: true, id: 4 },
+    ];
+    const mockHandleTaskUndone = jest.fn((id) => id);
+    render(
+      <TaskList
+        tasks={tasks}
+        onTaskDelete={() => {}}
+        onTaskDone={() => {}}
+        onTaskUndone={mockHandleTaskUndone}
+      />
+    );
+
+    const renderedTasks = screen.getAllByRole("listitem", { name: /task/i });
+
+    for (const task of tasks) {
+      const renderedTaskText = screen.getByText(task.text);
+      const renderedTask = renderedTasks.find((taskElement) =>
+        taskElement.contains(renderedTaskText)
+      );
+      if (!renderedTask)
+        throw new Error("Can not find TaskText in rendered Tasks.");
+      // eslint-disable-next-line testing-library/prefer-screen-queries
+      const deleteButtonForTask = getByRole(renderedTask, "button", {
+        name: /set undone/i,
+      });
+      await userEvent.click(deleteButtonForTask);
+      expect(mockHandleTaskUndone.mock.calls.length).toBe(1);
+      expect(mockHandleTaskUndone.mock.calls[0][0]).toBe(task.id);
+      mockHandleTaskUndone.mockClear();
     }
   });
 });
