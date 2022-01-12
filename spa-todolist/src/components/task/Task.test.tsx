@@ -91,7 +91,7 @@ describe("Task should", () => {
     expect(mockHandleDelete.mock.calls[0][0]).toBe(id)
   });
 
-  test("render a Set to Done button", () => {
+  test("render a Set to Done button, if done is false", () => {
     const taskText = "AbCDeF G";
     render(
       <Task
@@ -138,10 +138,9 @@ describe("Task should", () => {
         id={1}
         onDelete={() => {}}
         onDone={() => {}}
-        onUndone={() => {}}
       />
     );
-    const undoneButton = screen.getByRole("button", {name: /set undone/i})
+    const undoneButton = screen.getByRole("button", {name: /undone/i})
     expect(undoneButton).toBeInTheDocument()
   });
 
@@ -152,14 +151,14 @@ describe("Task should", () => {
     render(
       <Task
         text={taskText}
-        done={true}
+        done={false}
         id={id}
         onDelete={() => {}}
         onDone={()=> {}}
         onUndone={mockHandleDone}
       />
     );
-    const undoneButton = screen.getByRole("button", {name: /set undone/i})
+    const undoneButton = screen.getByRole("button", {name: /undone/i})
     await userEvent.click(undoneButton)
 
     expect(mockHandleDone.mock.calls.length).toBe(1)
