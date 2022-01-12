@@ -35,6 +35,12 @@ function App() {
     );
   };
 
+  const handleTaskUndone = (id: number) => {
+    setTasks((tasks) =>
+      tasks.map((task) => (task.id === id ? { ...task, done: false } : task))
+    );
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if(!taskText) return;
@@ -53,6 +59,7 @@ function App() {
         tasks={tasks}
         onTaskDelete={handleTaskDelete}
         onTaskDone={handleTaskDone}
+        onTaskUndone={handleTaskUndone}
       />
     </div>
   );
