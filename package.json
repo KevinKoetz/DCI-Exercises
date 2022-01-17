@@ -153,6 +153,7 @@
     "vowels",
     "spa-todolist",
     "spa-tictactoe-redux",
-    "spa-create-blog"
+    "spa-create-blog",
+    "spa-router-color-factory"
   ]
 }
