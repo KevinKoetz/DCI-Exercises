@@ -1,0 +1,26 @@
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+.CreatePost {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
+    div {
+      @extend .input-group;
+      label {
+        @extend .input-group-text;
+        min-width: 15ch;
+      }
+      input,
+      textarea {
+        @extend .form-control;
+        min-width: 30ch;
+      }
+    }
+    input[type="submit"] {
+        @extend .btn;
+        @extend .btn-primary;
+    }
+  }
+}

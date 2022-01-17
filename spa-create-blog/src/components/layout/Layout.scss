@@ -1,0 +1,25 @@
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+.Layout {
+    &>nav {
+        @extend .navbar;
+        @extend .navbar-dark;
+        @extend .bg-primary;
+        @extend .navbar-expand-sm;
+        &>ul {
+            @extend .navbar-nav;
+            &>li {
+                @extend .nav-item;
+                &>a {
+                    
+                    @extend .nav-link;
+                }
+            }
+        }     
+    }
+    &>main {
+        @extend .container-xxl;
+        background-color: $gray-300;
+        padding: 2em;
+    }
+}

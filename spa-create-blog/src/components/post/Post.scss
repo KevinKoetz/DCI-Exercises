@@ -1,0 +1,20 @@
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+.Post {
+    @extend .modal-content;
+
+  & > header {
+    @extend .modal-header;
+    & > h5 {
+        @extend .modal-title;
+    }
+  }
+
+  & > main {
+    @extend .modal-body;
+  }
+
+  & > footer {
+    @extend .modal-footer;
+  }
+}
