@@ -151,6 +151,7 @@
     "uib_interaction_animations",
     "uib_interaction_animations_processing_files",
     "vowels",
-    "spa-todolist"
+    "spa-todolist",
+    "spa-tictactoe-redux"
   ]
 }

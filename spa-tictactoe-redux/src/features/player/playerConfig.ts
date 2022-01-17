@@ -1,0 +1,1 @@
+export const players = ["X", "O"] as const
