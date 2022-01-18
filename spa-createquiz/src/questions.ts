@@ -1,17 +1,17 @@
 export interface IQuestion {
     uuid: string,
     question: string,
-    answers: IAnswer[],
+    answers: IAnswerOption[],
     language?: string,
     code?: string,
     solutions: number[]
 }
 
-export interface IAnswer {
+export interface IAnswerOption {
     text: string
 }
 
-export const questions = {
+export const questions: {[key: string]: IQuestion} = {
     "720ec11d-1056-484d-8a1c-fd2580019ea3": {
         uuid: "720ec11d-1056-484d-8a1c-fd2580019ea3",
         question: "What does HTML stand for?",
@@ -45,7 +45,7 @@ export const questions = {
             { text: "<footer>" }
         ],
         solutions: [1, 2, 5],
-        language: "html"
+        language: "html"  
     },
     "d0bca746-f7e8-430f-827f-165b83758177": {
         uuid: "d0bca746-f7e8-430f-827f-165b83758177",
