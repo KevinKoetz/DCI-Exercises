@@ -154,6 +154,7 @@
     "spa-todolist",
     "spa-tictactoe-redux",
     "spa-create-blog",
-    "spa-router-color-factory"
+    "spa-router-color-factory",
+    "spa-createquiz"
   ]
 }
