@@ -3,16 +3,5 @@
     height: 50px;
     background-color: brown;
     position: relative;
-    animation-name: moving;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
 }
 
-@keyframes moving {
-    from {
-        left: -100px;
-    }
-    to {
-        left: 100vw;
-    }
-}
