@@ -1,0 +1,22 @@
+{
+  "name": "process-sum-n-average",
+  "version": "1.0.0",
+  "description": "Create a program that takes in an operation to perform (\"sum\" / \"avg\"), and a set of numbers as arguments. The program should print out the result of the calculation to the terminal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/E06-1/kevin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/E06-1/kevin/issues"
+  },
+  "homepage": "https://github.com/E06-1/kevin#readme",
+  "devDependencies": {
+    "@types/node": "^16"
+  }
+}
