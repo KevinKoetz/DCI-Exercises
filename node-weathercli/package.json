@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/E06-1/kevin/issues"
   },
-  "homepage": "https://github.com/E06-1/kevin#readme"
+  "homepage": "https://github.com/E06-1/kevin#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.17"
+  },
+  "dependencies": {
+    "axios": "^0.25.0"
+  }
 }
