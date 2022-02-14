@@ -162,6 +162,7 @@
     "node-process-sum-n-average",
     "node-passarguments",
     "node-weathercli",
-    "be-express-almost-simple-server"
+    "be-express-almost-simple-server",
+    "node-oxFord-dictionary"
   ]
 }
