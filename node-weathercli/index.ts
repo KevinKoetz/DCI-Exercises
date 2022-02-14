@@ -18,7 +18,7 @@ async function getTemperature({ city, forecast, fahrenheit }: Arguments) {
     }&appid=50d2f26b3059663495c45d59ec33ab4f`;
 
     const response = await axios.get(request);
-
+    
     if (forecast) {
       console.log(
         `Forecast for ${response.data.city.name}, ${
@@ -33,9 +33,7 @@ async function getTemperature({ city, forecast, fahrenheit }: Arguments) {
       );
     } else {
       console.log(
-        `It is now ${response.data.main.temp}${fahrenheit ? "°F" : "°C"} in ${
-          response.data.city.name
-        }, ${response.data.city.country}`
+        `It is now ${response.data.main.temp}${fahrenheit ? "°F" : "°C"} in ${city}`
       );
     }
   } catch (error) {
