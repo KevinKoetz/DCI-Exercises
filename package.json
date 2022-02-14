@@ -161,6 +161,7 @@
     "tutoring-30-01-2022",
     "node-process-sum-n-average",
     "node-passarguments",
-    "node-weathercli"
+    "node-weathercli",
+    "be-express-almost-simple-server"
   ]
 }
