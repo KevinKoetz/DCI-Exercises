@@ -1,6 +1,9 @@
-import axios from "axios";
-import dotenv from "dotenv";
+import axios from "axios"; //To fetch the Data from the API
+import dotenv from "dotenv"; //To not have my API Key inside the repository
 
+
+//Just Copy pasted the API Response they provided from their website. 
+//You can ignore this, it's just here to have autocompletion/not need to go back and forth inside the API Documentation
 interface EntriesResponse {
   id: string;
   metadata: {
@@ -429,12 +432,16 @@ interface EntriesResponse {
   word: string;
 }
 
+//This line loads my API Key from a .env file (located on my personal PC) inside process.env.APP_KEY and the APP in inside process.env.APP_ID
 const envres = dotenv.config();
 if (envres.error) {
-  throw envres.error;
+  throw envres.error; //throw an Error if the file is not found or anything went wrong (Rest wont run anyway)
 }
 
+
+//Function to get the word Information, returns an Object: {word, category, definitions, provider}
 const getWordInformation = async (searchWord: string) => {
+  //If the .env does not contain my APP_KEY or ID throw Error and go out.
   if (
     !(
       "APP_ID" in process.env &&
@@ -446,14 +453,21 @@ const getWordInformation = async (searchWord: string) => {
     throw new Error("APP Key or ID not found in environment variables.");
 
   try {
+    //Get request to the API
     const response = await axios.get<EntriesResponse>(
       `https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/${searchWord}`,
       { headers: { app_id: process.env.APP_ID, app_key: process.env.APP_KEY } }
     );
+
+    //Finding the first result if it is there, might be that no word like that was found.
     const result = response.data.results.find((result) =>
       result.word.includes(searchWord)
     );
+
+    //Return null if word wasn't found
     if (!result) return null;
+
+    //Prepare result values
     const word = result.word;
     const category = result.lexicalEntries[0].lexicalCategory.text;
     const definitions = result.lexicalEntries[0].entries[0].senses.map(
@@ -461,26 +475,36 @@ const getWordInformation = async (searchWord: string) => {
     );
     const provider = response.data.metadata.provider;
 
+    //Return them in an object
     return { word, category, definitions, provider };
+
   } catch (error) {
+    //In case someone inputs something strange
     console.log("Malformed Request.");
     return null;
   }
 };
 
+//Main function wrapped in () with a () after it to invoke it immediately. Could have also just written main() afterwards.
 (async function main() {
+
+  //Getting the word from the user (should be the first argument, so index 2 in argv)
   const word = process.argv[2];
+
+  //get the Information
   const information = await getWordInformation(word);
+
+  //If information is null, log that the word wasn't found and return.
   if (!information) {
     console.log("Unable to find word.");
     return;
   }
 
+  //Otherwise log the output.
   console.log(information.word + " " + information.category);
   information.definitions.forEach((def, idx) =>
     console.log(idx + 1 + ". " + def)
   );
-
   console.log("Provider: "+ information.provider);
   
 })();
