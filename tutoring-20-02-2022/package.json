@@ -1,0 +1,24 @@
+{
+  "name": "tutoring-20-02-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "npm run start --workspace=backend",
+    "start:client": "npm run start --workspace=client",
+    "start": "run-p start:backend start:client"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.18"
+  },
+  "workspaces": [
+    "client",
+    "backend"
+  ]
+}
