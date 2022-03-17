@@ -1,7 +1,7 @@
 {
-  "name": "passarguments",
+  "name": "process-sum-n-average",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create a program that takes in an operation to perform (\"sum\" / \"avg\"), and a set of numbers as arguments. The program should print out the result of the calculation to the terminal.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/E06-1/kevin#readme",
   "devDependencies": {
-    "@types/node": "^17.0.17"
+    "@types/node": "^16"
   }
 }
