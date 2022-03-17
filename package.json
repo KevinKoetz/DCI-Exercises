@@ -163,6 +163,7 @@
     "node-passarguments",
     "node-weathercli",
     "be-express-almost-simple-server",
-    "node-oxFord-dictionary"
+    "node-oxFord-dictionary",
+    "tutoring-27-02-2022/typescript_intro"
   ]
 }
